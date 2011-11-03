@@ -144,9 +144,10 @@ But nothing that gets me particularly excited
     rake spec:all    # Run the test suite for all DBs.
 
 !SLIDE
-# Register at Rubygems.org #
+![Register at Rubygems.org](rubygems_signup.png)
 
-!SLIDE commandline
+!SLIDE commandline incremental
+# Authorize your machine #
     $ gem push
     Email:
     Password:
@@ -157,6 +158,12 @@ But nothing that gets me particularly excited
     Tagged v0.0.3
     Pushed git commits and tags
     Pushed buzzfizz 0.0.2 to rubygems.org
+
+!SLIDE
+![Search for your gem on Rubygems.org](rubygems_search.png)
+
+!SLIDE
+![View your gem on Rubygems.org](rubygems_published.png)
 
 !SLIDE
 # Congratulations! #
