@@ -1,1 +1,1 @@
-{ "name": "SDRuby Mini-talks", "sections": [ {"section":"backbone"} ]}
+{ "name": "SDRuby Mini-talks", "sections": [ {"section":"backbone"}, {"section":"gem_bootstrap"} ]}
