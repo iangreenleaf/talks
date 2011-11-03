@@ -31,6 +31,10 @@
   <link type="text/css" href="./css/sh_style.css" rel="stylesheet" >
 
   
+    <link rel="stylesheet" href="file/style.css" type="text/css"/>
+  
+    <link rel="stylesheet" href="file/sh_rand01.min.css" type="text/css"/>
+  
 
   
 
@@ -75,7 +79,7 @@
 </div>
 
 <div id="slides" class="offscreen" style="display:none;">
-<div class="slide" data-transition="none"><div class="content" ref="backbone/01_slides/1">
+<div class="slide" data-transition="none"><div class="content subsection" ref="backbone/01_slides/1">
 <h1>Rails up your Backbone</h1>
 </div>
 </div><div class="slide" data-transition="none"><div class="content" ref="backbone/01_slides/2">
@@ -226,6 +230,515 @@ end</code></pre>
 </div>
 </div><div class="slide" data-transition="none"><div class="content" ref="backbone/01_slides/21">
 <p><img src="./file/backbone/polar_bear.jpg" width="435" height="480" alt="Polar bear in coffee"/></p>
+
+<p><a href="https://github.com/iangreenleaf">github.com/iangreenleaf</a></p>
+
+<p><a href="https://twitter.com/iangreenleaf">@iangreenleaf</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="my_gems/01_intro">
+<h1>Gems I've made recently</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="my_gems/02_activerecord_enum/1">
+<h1>activerecord_enum</h1>
+
+<p><a href="https://github.com/iangreenleaf/activerecord_enum">github.com/iangreenleaf/activerecord_enum</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="my_gems/02_activerecord_enum/2">
+<h1>Meet MySQL ENUM</h1>
+
+<pre><code><code class="command">$ mysql&gt; desc gemstones;</code>
+<code class="result">+-------+--------------------------------+------+-----+---------+
+| Field | Type                           | Null | Key | Default |
++-------+--------------------------------+------+-----+---------+
+| size  | enum('small','large') | YES  |     | NULL    |
++-------+--------------------------------+------+-----+---------+
+
+</code><code class="command">$ mysql&gt; insert into gemstones values ('large');</code>
+<code class="result">Query OK, 1 row affected (0.00 sec)
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/3">
+<h1>Non-standard SQL?!?!</h1>
+
+<h1>Well, yes</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/02_activerecord_enum/4">
+<h1>Not the only option</h1>
+
+<ul>
+<li>A string column with an index</li>
+<li><code>validates_inclusion_of</code></li>
+<li><a href="https://github.com/nofxx/symbolize">nofxx/symbolize</a></li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/5">
+<h1>nofxx/symbolize</h1>
+
+<pre class="sh_ruby"><code>   class Gemstone
+     symbolize :size, \
+      :in =&gt; [:small, :large]
+   end
+
+   @gemstone.size
+     # =&gt; :small</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/02_activerecord_enum/6">
+<h1>Why use ENUM?</h1>
+
+<ul>
+<li>Performance(...)</li>
+<li>DB structure</li>
+<li>Other codebases</li>
+<li>Legacy support</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/7">
+<pre class="sh_ruby"><code># schema.rb
+create_table "gemstones" do |t|
+  t.column "size", "enum('small','large')"
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/8">
+<h1>So far, so good</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/9">
+<p>[use rake]</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/10">
+<h1>But wait...</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/11">
+<p>TODO</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/12">
+<h1>Arrrrrrggggh</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/13">
+<h1>Solution</h1>
+
+<p>Tell ActiveRecord about enums</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/14">
+<pre class="sh_ruby"><code># schema.rb
+create_table "gemstones" do |t|
+  t.enum "size", :limit =&gt; ["small","large"]
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/02_activerecord_enum/15">
+<h1>Works with other database adapters, too</h1>
+
+<p>So please put the weapons down</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/02_activerecord_enum/16">
+<h1>Does</h1>
+
+<ul>
+<li>Rails 3.0.x</li>
+<li>mysql2, sqlite</li>
+<li>ENUM and SET types</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/02_activerecord_enum/17">
+<h1>Should add</h1>
+
+<ul>
+<li>Rails 3.1.x</li>
+<li>Other DB adapters</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="my_gems/03_active_set/1">
+<h1>active_set</h1>
+
+<p><a href="https://github.com/iangreenleaf/active_set">github.com/iangreenleaf/active_set</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="my_gems/03_active_set/2">
+<h1>Meet MySQL SET</h1>
+
+<pre><code><code class="command">$ mysql&gt; desc balloons;</code>
+<code class="result">+-------+--------------------------+------+-----+---------+
+| Field | Type                     | Null | Key | Default |
++-------+--------------------------+------+-----+---------+
+| gas   | set('helium','hydrogen') | YES  |     | NULL    |
++-------+--------------------------+------+-----+---------+
+
+</code><code class="command">$ mysql&gt; insert into balloons values ('helium');</code>
+<code class="result">Query OK, 1 row affected (0.00 sec)
+</code><code class="command">$ mysql&gt; insert into balloons values ('helium,hydrogen');</code>
+<code class="result">Query OK, 1 row affected (0.00 sec)
+</code><code class="command">$ mysql&gt; select count(*) from foo where find_in_set('hydrogen',gas);</code>
+<code class="result">+----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/03_active_set/3">
+<h1>Non-standard SQL?!?!</h1>
+
+<h1>Well, yes</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/03_active_set/4">
+<h1>...I was on a roll</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/03_active_set/5">
+<pre class="sh_ruby"><code>class Balloon &lt; ActiveRecord::Base
+  acts_as_set :gasses, ["helium","hydrogen"]
+end
+
+Balloon.create :gasses=&gt;["helium","hydrogen"]</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/03_active_set/6">
+<h1>Remember</h1>
+
+<p>Use with <code>activerecord_enum</code> to keep your schema clean</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/03_active_set/7">
+<h1>Does</h1>
+
+<ul>
+<li>Not much</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/03_active_set/8">
+<h1>What should I add?</h1>
+
+<ul>
+<li>Probably validations</li>
+<li>Support find_in_set(?)</li>
+<li>Does anyone even use these?</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="my_gems/03_active_set/9">
+<h1>Bonus slide</h1>
+
+<pre><code><code class="command">$ mysql&gt; desc my_table;</code>
+<code class="result">+-----------+----------------------------------------+
+| Field     | Type            | Null | Key | Default |
++-----------+-----------------+------+-----+---------+
+| special   | set('yes','no') | YES  |     | NULL    |
++-----------+-----------------+------+-----+---------+
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="my_gems/04_tap_out/1">
+<h1>tap_out</h1>
+
+<p><a href="https://github.com/iangreenleaf/tap_out">github.com/iangreenleaf/tap_out</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/04_tap_out/2">
+<h1>Problem</h1>
+
+<p>I have a project with Ruby + PHP code.</p>
+
+<p>The phpunit tests never get run.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/04_tap_out/3">
+<h1>Solution</h1>
+
+<p>Run phpunit tests from rake.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/04_tap_out/4">
+<h1>Extra mile</h1>
+
+<p>Hook directly into Test::Unit</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/04_tap_out/5">
+<p><a href="TODO">Test::Unit screenshot</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="my_gems/04_tap_out/6">
+<h1>Test Anything Protocol</h1>
+
+<pre><code><code class="command">$ phpunit --tap .</code>
+<code class="result">TAP version 13
+ok 1 - ValidationTest::testBadPhoneParams with data set #0 ('')
+ok 2 - ValidationTest::testBadPhoneParams with data set #1 ('abcdefgh')
+ok 3 - DbConnectionTest::testGetSingleton
+not ok 4 - Failure: DbConnectionTest::testTransactionRollback
+  ---
+  message: 'Failed asserting that &lt;boolean:false&gt; is not equal to &lt;boolean:false&gt;.'
+  severity: fail
+  ...
+ok 5 - DbConnectionTest::testTransactionCommit
+1..5
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/04_tap_out/7">
+<pre class="sh_ruby"><code>require 'test_helper'
+require 'test/phpunit'
+
+class PHPTest &lt; ActiveSupport::TestCase
+  extend Test::PHPUnit
+  phpunit "test/phpunit/", \
+    :configuration =&gt; 'test/phpunit.xml'
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/04_tap_out/8">
+<h1>What else should it do?</h1>
+
+<ul>
+<li>Perl (probably easy)</li>
+<li>Other languages</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="my_gems/05_crux/1">
+<h1>crux</h1>
+
+<p><a href="https://github.com/iangreenleaf/crux">github.com/iangreenleaf/crux</a></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/05_crux/2">
+<h1>Greasemonkey</h1>
+
+<ul>
+<li>Firefox extension</li>
+<li>Execute your own Javascript on matched pages</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/05_crux/3">
+<pre class="sh_javascript"><code>// ==UserScript==
+// @name Github autocomplete
+// @namespace iangreenleaf.com
+// @description Autocompletion for @-mentions on GitHub
+// @include https://github.com/*
+// @require http://.../1.6.4/jquery.min.js
+// ==/UserScript==
+
+$(".comment-form").keyup(function(e) {
+  // ...
+});</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/05_crux/4">
+<h1>Greasemonkey scripts work on Chrome</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/05_crux/5">
+<h1>Except a few things</h1>
+
+<p>Like <code>@require</code>.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/05_crux/6">
+<h1>Chrome extensions</h1>
+
+<p>Turns out packaging them isn't that hard.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/05_crux/7">
+<h1>manifest.json</h1>
+
+<pre class="sh_javascript"><code>{
+  "name": "My Extension",
+  "version": "2.1",
+  "description": "Sample plugin.",
+  "permissions": ["https://*.google.com/"],
+  "content_scripts":
+    [{ "js": ["jquery.js", "myscript.js"] }]
+}</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/05_crux/8">
+<h1>I am so lazy</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="my_gems/05_crux/9">
+<h1>Let's package it automatically</h1>
+
+<p>Use the Greasemonkey metadata and a couple assumptions.</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="my_gems/05_crux/10">
+<h1>To Do</h1>
+
+<ul>
+<li>Most of the actual work</li>
+<li>Host from GitHub</li>
+<li>Auto-updating</li>
+<li>Maybe export to <a href="https://github.com/defunkt/dotjs">dotjs</a> as well</li>
+<li>CoffeeScript?</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content subsection" ref="gem_bootstrap/01_slides/1">
+<h1>Ultra-minimalist gem bootstrapping</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/2">
+<h1>Let's make a gem!</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/3">
+<h1>A little intimidating...?</h1>
+
+<h1>Nahhhhh</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="gem_bootstrap/01_slides/4">
+<h1>Hoe, Jeweler</h1>
+
+<ul>
+<li>Gem management gems</li>
+<li>Comprehensive</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="gem_bootstrap/01_slides/5">
+<h1>But...</h1>
+
+<ul>
+<li>Kinda pushy</li>
+<li>I have to require the jeweler gem inside my gem</li>
+<li>Kinda... complicated</li>
+</ul>
+
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/6">
+<h1>Suddenly we're back to intimidated</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content incremental" ref="gem_bootstrap/01_slides/7">
+<h1>There are some other options out there</h1>
+
+<p>But nothing that gets me particularly excited</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/8">
+<h1>There's another way</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/9">
+<h1>The tool is coming...</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/10">
+<h1>...from INSIDE YOUR COMPUTER</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/11">
+<p><img src="./file/gem_bootstrap/bundler.png" width="800" height="276" alt="Bundler"/></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="gem_bootstrap/01_slides/12">
+<pre><code><code class="command">$ bundle gem buzzfizz</code>
+<code class="result">      create  buzzfizz/Gemfile
+      create  buzzfizz/Rakefile
+      create  buzzfizz/.gitignore
+      create  buzzfizz/buzzfizz.gemspec
+      create  buzzfizz/lib/buzzfizz.rb
+      create  buzzfizz/lib/buzzfizz/version.rb
+Initializating git repo in /home/youngian/code/buzzfizz
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/13">
+<pre class="sh_ruby"><code># Rakefile
+
+require 'bundler'
+Bundler::GemHelper.install_tasks</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/14">
+<pre><code># .gitignore
+
+*.gem
+.bundle
+Gemfile.lock
+pkg/*
+</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/15">
+<pre class="sh_ruby"><code># lib/buzzfizz/version.rb
+
+module Buzzfizz
+  VERSION = "0.0.1"
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/16">
+<pre class="sh_ruby"><code># lib/buzzfizz.rb
+
+module Buzzfizz
+  # Your code goes here...
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/17">
+<pre class="sh_ruby"><code># Gemfile
+
+source "http://rubygems.org"
+
+# Specify your gem's dependencies
+# in buzzfizz.gemspec
+gemspec</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/18">
+<pre class="sh_ruby"><code># buzzfizz.gemspec
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "buzzfizz/version"
+
+Gem::Specification.new do |s|
+  s.name = "buzzfizz"
+  s.version = Buzzfizz::VERSION
+  s.platform = Gem::Platform::RUBY
+  s.authors = ["TODO: Write your name"]
+  s.email = ["TODO: Write your email address"]
+  s.homepage = ""
+  s.summary = %q{TODO: Write a gem summary}
+  s.description = %q{TODO: Write a gem description}</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/19">
+<pre class="sh_ruby"><code>  s.rubyforge_project = "buzzfizz"
+
+  s.files = `git ls-files`.split("\n")
+  s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
+end</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/20">
+<h1>We'll probably want to add a couple things</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/21">
+<pre class="sh_ruby"><code>s.add_dependency "activerecord", "~&gt; 3.0.9"
+s.add_development_dependency "mocha"</code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/22">
+<h1>Let's use it</h1>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="gem_bootstrap/01_slides/23">
+<pre><code><code class="command">$ rake -T</code>
+<code class="result">rake build       # Build buzzfizz-0.0.2.gem into the pkg directory
+rake db:prepare  # Prepare the databases.
+rake default     # Default: run all unit tests.
+rake install     # Build and install buzzfizz-0.0.2.gem into
+                 # system gems
+rake release     # Create tag v0.0.2 and build and
+                 # push buzzfizz-0.0.2.gem to Rubygems
+rake spec        # Run the test suite.
+rake spec:all    # Run the test suite for all DBs.
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/24">
+<p><img src="./file/gem_bootstrap/rubygems_signup.png" width="838" height="747" alt="Register at Rubygems.org"/></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="gem_bootstrap/01_slides/25">
+<h1>Authorize your machine</h1>
+
+<pre><code><code class="command">$ gem push</code>
+<code class="result">Email:
+Password:
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content commandline incremental" ref="gem_bootstrap/01_slides/26">
+<pre><code><code class="command">$ rake release</code>
+<code class="result">buzzfizz 0.0.2 built to pkg/buzzfizz-0.0.2.gem
+Tagged v0.0.3
+Pushed git commits and tags
+Pushed buzzfizz 0.0.2 to rubygems.org
+</code></code></pre>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/27">
+<p><img src="./file/gem_bootstrap/rubygems_search.png" width="838" height="110" alt="Search for your gem on Rubygems.org"/></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/28">
+<p><img src="./file/gem_bootstrap/rubygems_published.png" width="800" height="915" alt="View your gem on Rubygems.org"/></p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="gem_bootstrap/01_slides/29">
+<h1>Congratulations!</h1>
+
+<p>You're a gem author!</p>
+</div>
+</div><div class="slide" data-transition="none"><div class="content" ref="thanks/01_slide">
+<h1>Thanks</h1>
 
 <p><a href="https://github.com/iangreenleaf">github.com/iangreenleaf</a></p>
 
