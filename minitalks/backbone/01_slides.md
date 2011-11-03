@@ -1,7 +1,7 @@
 !SLIDE subsection
 # Rails up your Backbone #
 
-!SLIDE
+!SLIDE center
 ![Yo dawg, I heard you like Rails](yo_dawg.jpg)
 
 !SLIDE bullets incremental
@@ -18,7 +18,7 @@
 !SLIDE
 # Step one #
 
-!SLIDE
+!SLIDE center
 # CoffeeScript #
 ![Caffeine high](coffee.png)
 
@@ -44,7 +44,7 @@
 !SLIDE
 # Step two #
 
-!SLIDE
+!SLIDE center
 # Relational models #
 ![I can haz-many?](can_haz.jpg)
 
@@ -92,7 +92,7 @@
       }
     }
 
-!SLIDE
+!SLIDE center
 ![JSON success](json_success.jpg)
 
 !SLIDE
@@ -151,7 +151,7 @@
 
     end
 
-!SLIDE
+!SLIDE center
 
 ![Polar bear in coffee](polar_bear.jpg)
 

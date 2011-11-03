@@ -38,7 +38,7 @@ But nothing that gets me particularly excited
 !SLIDE
 # ...from INSIDE YOUR COMPUTER #
 
-!SLIDE
+!SLIDE center
 ![Bundler](bundler.png)
 
 !SLIDE commandline incremental
@@ -143,7 +143,7 @@ But nothing that gets me particularly excited
     rake spec        # Run the test suite.
     rake spec:all    # Run the test suite for all DBs.
 
-!SLIDE
+!SLIDE center
 ![Register at Rubygems.org](rubygems_signup.png)
 
 !SLIDE commandline incremental
@@ -159,10 +159,10 @@ But nothing that gets me particularly excited
     Pushed git commits and tags
     Pushed buzzfizz 0.0.2 to rubygems.org
 
-!SLIDE
+!SLIDE center
 ![Search for your gem on Rubygems.org](rubygems_search.png)
 
-!SLIDE
+!SLIDE center
 ![View your gem on Rubygems.org](rubygems_published.png)
 
 !SLIDE
