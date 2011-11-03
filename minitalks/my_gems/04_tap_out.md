@@ -20,8 +20,9 @@ Run phpunit tests from rake.
 
 Hook directly into Test::Unit
 
-!SLIDE
-[Test::Unit screenshot](TODO)
+!SLIDE center
+
+![Test::Unit screenshot](tap_out.png)
 
 !SLIDE commandline incremental
 # Test Anything Protocol #

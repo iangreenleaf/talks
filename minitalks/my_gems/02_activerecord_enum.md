@@ -64,7 +64,15 @@
 # But wait... #
 
 !SLIDE
-TODO
+
+    @@@ diff
+    diff --git a/db/schema.rb b/db/schema.rb
+    index 0ea17e4..d4a2cf9 100644
+    --- a/db/schema.rb
+    +++ b/db/schema.rb
+    @@ -53,16 +53,16 @@
+    - t.column "size", "enum('small','large')"
+    + t.string "size", :limit => 0
 
 !SLIDE
 # Arrrrrrggggh #
