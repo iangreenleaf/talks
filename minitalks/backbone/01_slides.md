@@ -1,4 +1,4 @@
-!SLIDE
+!SLIDE subsection
 # Rails up your Backbone #
 
 !SLIDE

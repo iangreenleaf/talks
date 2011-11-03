@@ -1,4 +1,4 @@
-!SLIDE
+!SLIDE subsection
 # tap_out #
 
 [github.com/iangreenleaf/tap_out](https://github.com/iangreenleaf/tap_out)

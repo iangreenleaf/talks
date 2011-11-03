@@ -1,4 +1,4 @@
-!SLIDE
+!SLIDE subsection
 # active_set #
 
 [github.com/iangreenleaf/active_set](https://github.com/iangreenleaf/active_set)

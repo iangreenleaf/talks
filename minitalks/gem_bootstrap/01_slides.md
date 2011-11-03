@@ -1,4 +1,4 @@
-!SLIDE
+!SLIDE subsection
 # Ultra-minimalist gem bootstrapping #
 
 !SLIDE

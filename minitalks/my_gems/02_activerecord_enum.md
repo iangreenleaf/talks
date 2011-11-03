@@ -1,4 +1,4 @@
-!SLIDE
+!SLIDE subsection
 # activerecord_enum #
 
 [github.com/iangreenleaf/activerecord_enum](https://github.com/iangreenleaf/activerecord_enum)

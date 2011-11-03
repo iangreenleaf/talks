@@ -1,4 +1,4 @@
-!SLIDE
+!SLIDE subsection
 # crux #
 
 [github.com/iangreenleaf/crux](https://github.com/iangreenleaf/crux)
