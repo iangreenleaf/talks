@@ -125,3 +125,39 @@
     @@@ ruby
     s.add_dependency "activerecord", "~> 3.0.9"
     s.add_development_dependency "mocha"
+
+
+!SLIDE
+# Let's use it #
+
+!SLIDE commandline incremental
+    $ rake -T
+    rake build       # Build buzzfizz-0.0.2.gem into the pkg directory
+    rake db:prepare  # Prepare the databases.
+    rake default     # Default: run all unit tests.
+    rake install     # Build and install buzzfizz-0.0.2.gem into
+                     # system gems
+    rake release     # Create tag v0.0.2 and build and
+                     # push buzzfizz-0.0.2.gem to Rubygems
+    rake spec        # Run the test suite.
+    rake spec:all    # Run the test suite for all DBs.
+
+!SLIDE
+# Register at Rubygems.org #
+
+!SLIDE commandline
+    $ gem push
+    Email:
+    Password:
+
+!SLIDE commandline incremental
+    $ rake release
+    buzzfizz 0.0.2 built to pkg/buzzfizz-0.0.2.gem
+    Tagged v0.0.3
+    Pushed git commits and tags
+    Pushed buzzfizz 0.0.2 to rubygems.org
+
+!SLIDE
+# Congratulations! #
+
+You're a gem author!
