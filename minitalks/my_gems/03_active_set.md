@@ -55,11 +55,12 @@ Use with `activerecord_enum` to keep your schema clean
  * Support find_in_set(?)
  * Does anyone even use these?
 
-!SLIDE
+!SLIDE commandline incremental
 # Bonus slide #
 
-    +--------------+--------------------------------------+
-    | Field | Type                 | Null | Key | Default |
-    +--------------+--------------------------------------+
-    | sex   | set('male','female') | YES  |     | NULL    |
-    +--------------+--------------------------------------+
+    $ mysql> desc my_table;
+    +-----------+----------------------------------------+
+    | Field     | Type            | Null | Key | Default |
+    +-----------+-----------------+------+-----+---------+
+    | special   | set('yes','no') | YES  |     | NULL    |
+    +-----------+-----------------+------+-----+---------+

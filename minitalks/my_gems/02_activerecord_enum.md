@@ -10,10 +10,10 @@
     +-------+--------------------------------+------+-----+---------+
     | Field | Type                           | Null | Key | Default |
     +-------+--------------------------------+------+-----+---------+
-    | size  | enum('small','medium','large') | YES  |     | NULL    |
+    | size  | enum('small','large') | YES  |     | NULL    |
     +-------+--------------------------------+------+-----+---------+
 
-    $ mysql> insert into gemstones values ('medium');
+    $ mysql> insert into gemstones values ('large');
     Query OK, 1 row affected (0.00 sec)
 
 !SLIDE
@@ -32,7 +32,7 @@
       @@@ ruby
        class Gemstone
          symbolize :size, \
-          :in => [:small, :medium, :large]
+          :in => [:small, :large]
        end
 
        @gemstone.size
@@ -51,7 +51,7 @@
     @@@ ruby
     # schema.rb
     create_table "gemstones" do |t|
-      t.column "size", "enum('small','medium','large')"
+      t.column "size", "enum('small','large')"
     end
 
 !SLIDE
@@ -79,11 +79,11 @@ Tell ActiveRecord about enums
     @@@ ruby
     # schema.rb
     create_table "gemstones" do |t|
-      t.enum "size", :limit => ["small", "medium", "large"]
+      t.enum "size", :limit => ["small","large"]
     end
 
 !SLIDE
-# Works with other adapters, too #
+# Works with other database adapters, too #
 
 So please put the weapons down
 

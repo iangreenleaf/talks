@@ -23,11 +23,12 @@
  * Kinda... complicated
 
 !SLIDE
-# Suddenly we're back to intimidating #
+# Suddenly we're back to intimidated #
 
 !SLIDE incremental
 # There are some other options out there #
-# But nothing that gets me particularly excited #
+
+But nothing that gets me particularly excited
 
 !SLIDE
 # There's another way #
