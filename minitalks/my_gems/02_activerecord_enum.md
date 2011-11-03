@@ -87,13 +87,13 @@ Tell ActiveRecord about enums
 
 So please put the weapons down
 
-!SLIDE
+!SLIDE incremental
 # Does #
  * Rails 3.0.x
  * mysql2, sqlite
  * ENUM and SET types
 
-!SLIDE
+!SLIDE incremental
 # Should add #
  * Rails 3.1.x
  * Other DB adapters

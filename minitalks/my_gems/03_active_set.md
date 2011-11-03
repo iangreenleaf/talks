@@ -45,11 +45,11 @@
 
 Use with `activerecord_enum` to keep your schema clean
 
-!SLIDE
+!SLIDE incremental
 # Does #
  * Not much
 
-!SLIDE
+!SLIDE incremental
 # What should I add? #
  * Probably validations
  * Support find_in_set(?)

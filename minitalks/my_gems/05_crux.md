@@ -57,7 +57,7 @@ Turns out packaging them isn't that hard.
 
 Use the Greasemonkey metadata and a couple assumptions.
 
-!SLIDE
+!SLIDE incremental
 # To Do #
  * Most of the actual work
  * Host from GitHub
