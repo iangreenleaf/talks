@@ -5,6 +5,12 @@
   font-family: "Ubuntu Mono", monospace;
   font-size: 40px;
 }
+#preso .commandline code {
+  font-size: 32px;
+}
+#preso .commandline pre {
+  line-height: 32px;
+}
 
 h1 {
   font-weight: bold;
