@@ -1,7 +1,14 @@
 #preso {
   font-family: "Droid Sans", Helvetica, Arial, sans-serif;
 }
+#preso code, #preso pre {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 40px;
+}
 
+h1 {
+  font-weight: bold;
+}
 h1 strong {
   font-size: 1.6em;
 }
