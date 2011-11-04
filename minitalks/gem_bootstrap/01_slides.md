@@ -133,7 +133,8 @@ But nothing that gets me particularly excited
 
 !SLIDE commandline incremental
     $ rake -T
-    rake build       # Build buzzfizz-0.0.2.gem into the pkg directory
+    rake build       # Build buzzfizz-0.0.2.gem into the
+                     # pkg directory
     rake db:prepare  # Prepare the databases.
     rake default     # Default: run all unit tests.
     rake install     # Build and install buzzfizz-0.0.2.gem into

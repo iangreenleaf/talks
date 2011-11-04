@@ -3,9 +3,10 @@
 
 [github.com/iangreenleaf/active_set](https://github.com/iangreenleaf/active_set)
 
-!SLIDE commandline incremental
+!SLIDE
 # Meet MySQL SET #
 
+!SLIDE commandline incremental
     $ mysql> desc balloons;
     +-------+--------------------------+------+-----+---------+
     | Field | Type                     | Null | Key | Default |
@@ -17,7 +18,8 @@
     Query OK, 1 row affected (0.00 sec)
     $ mysql> insert into balloons values ('helium,hydrogen');
     Query OK, 1 row affected (0.00 sec)
-    $ mysql> select count(*) from foo where find_in_set('hydrogen',gas);
+    $ mysql> select count(*) from foo where \
+      find_in_set('hydrogen',gas);
     +----------+
     | count(*) |
     +----------+
@@ -52,7 +54,7 @@ Use with `activerecord_enum` to keep your schema clean
 !SLIDE incremental
 # What should I add? #
  * Probably validations
- * Support find_in_set(?)
+ * Support find\_in\_set(?)
  * Does anyone even use these?
 
 !SLIDE commandline incremental
