@@ -7,11 +7,11 @@
 # Meet MySQL ENUM #
 
     $ mysql> desc gemstones;
-    +-------+--------------------------------+------+-----+---------+
-    | Field | Type                           | Null | Key | Default |
-    +-------+--------------------------------+------+-----+---------+
-    | size  | enum('small','large') | YES  |     | NULL    |
-    +-------+--------------------------------+------+-----+---------+
+    +-------+------------------------------+------+---------+
+    | Field | Type                         | Null | Default |
+    +-------+------------------------------+------+---------+
+    | size  | enum('small','large')        | YES  | NULL    |
+    +-------+------------------------------+------+---------+
 
     $ mysql> insert into gemstones values ('large');
     Query OK, 1 row affected (0.00 sec)
@@ -57,8 +57,8 @@
 !SLIDE
 # So far, so good #
 
-!SLIDE
-[use rake]
+!SLIDE commandline
+    $ rake something
 
 !SLIDE
 # But wait... #
