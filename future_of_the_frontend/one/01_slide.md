@@ -214,6 +214,8 @@ TODO "jquery developers"
 ~~~SECTION:notes~~~
 ~~~ENDSECTION~~~
 
+TODO make sure to mention CS integration with existing JS libs
+
 !SLIDE
 # ClojureScript #
 ~~~SECTION:notes~~~
@@ -270,18 +272,90 @@ That's Clojure in a nutshell.
 ~~~SECTION:notes~~~
 Clojure*Script* is a port of Clojure that compiles to JavaScript. In other words, it looks mostly the same, but you can
 compile it to something that runs in the browser.
+
+Now, it's worth noting that the previous languages we've looked at map very closely to JavaScript.
+The data primitives are all JavaScript primitives, and the mechanics of the language are still JavaScript.
+Once you understand
+CoffeeScript, it's fairly easy to guess what the compiled JavaScript output will look like. And in fact, the compiled
+JavaScript looks like something a human *might* write.
+
+This isn't the case for ClojureScript. It's founded on a significantly different set of assumptions, and so it maintains
+it's own immutable data types, and has a significant amount of extra runtime built in.
 ~~~ENDSECTION~~~
 
 !SLIDE
+TODO
+```clojure
+(def foo (js-obj "bar" "baz"))
+; var foo = {bar: "baz"};
+(set! (.-bar foo) "quux")
+(def clojure-foo (js->clj foo))
+(clj->js clojure-foo)
+```
 ~~~SECTION:notes~~~
+ClojureScript offers some extra functionality to bridge the gap between Clojure and the browser runtime.
+
+You can create JavaScript primitives and convert between those and Clojure data structures.
+TODO explain
+
+The upshot of this is that it's not quite as straightforward to interface between ClojureScript and 3rd-party libraries,
+or the DOM itself. If you use ClojureScript you'll want to use as many native ClojureScript libraries as you can
+to save yourself the trouble of bridging that gap. This leaves you at the mercy of a healthy ClojureScript ecosystem,
+though to be fair there are some very nice projects happening so far.
+
+TODO performance
+
+The big upside to this greater level of abstraction is that we are better insulated from JavaScript's failings.
+CoffeeScript classes are pleasant to work with thanks to the thoughtful implementation and nice syntax, but
+at the end of the day you *are* still working with JavaScript's wacky and poorly-implemented version of
+prototypical inheritance, which I guarantee will come around to bite you sooner or later. You're still
+working with JavaScript's weak typing and ridiculous comparators.[1]
+
+CoffeeScript does what it can to insulate you from JavaScript's shortcomings, but the unavoidable truth is that
+it can only do so much. ClojureScript, by greater abstraction, can do much more.
+
+[1]: https://www.destroyallsoftware.com/talks/wat
 ~~~ENDSECTION~~~
 
 !SLIDE
+# asm.js #
 ~~~SECTION:notes~~~
+The other consequence of this abstraction is that we are now starting to treat JavaScript a lot like bytecode.
+
+CoffeeScript still has access to the entire JavaScript feature set and a CoffeeScript program will likely use
+much of it.
+
+A ClojureScript program uses many fewer of JavaScript's features. In fact, to be Turing complete we need only
+a very small number of simple operations in theory, and we could build an entire language runtime on top of those.
+
+Some very smart people followed this train of thought and said, "Hey, if we're going to treat JavaScript like
+bytecode, why not actually define a JavaScript bytecode?" And thus asm.js was born.
+
+asm.js is a spec. It's a subset of JavaScript that uses only a small number of simple operations. TODO what operations?
+You give a browser a piece of asm-compliant code, and that browser can, in theory,
+choose to run that code with a bunch of optimizations applied that are not possible when you must account
+for JavaScript's full set of more dynamic features. In other words, if the browser supports it, asm-compliant
+code can run very, very fast.
+
+Now, asm code is also not very human readable. TODO example
+You're not really meant to produce asm by hand. It's a target for compilers. *pause*
+
+It's all coming together, right?
+
+TODO graphics
+We build something in a language of our choice, a language that may be as far removed from JavaScript as we please.
+We *compile* our code through a special compiler that targets
+asm.js. It spits out a bunch of ugly JavaScript with the full runtime that's needed to run our code.
+This JavaScript is regular JavaScript that will run on *any* browser. It just so happens that a browser with
+ASM optimizations will run it very, very fast. Suddenly, any language we can dream is theoretically available to
+us in the browser, fully functional in older browsers and with excellent performance in modern browsers.
 ~~~ENDSECTION~~~
 
 !SLIDE
+# Can I use asm.js now? #
 ~~~SECTION:notes~~~
+Welllll... sorta.
+TODO
 ~~~ENDSECTION~~~
 
 !SLIDE
