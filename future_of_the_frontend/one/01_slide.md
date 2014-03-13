@@ -642,19 +642,58 @@ us in the browser, fully functional in older browsers and with excellent perform
 
 !SLIDE
 # Can I use asm.js now? #
+# ...sorta. #
+* LLVM is a many-to-many compiler toolset
+* Emscripten can go from LLVM to JavaScript
+* C --(clang)--> LLVM --(Emscripten)--> asm.js
 ~~~SECTION:notes~~~
 Welllll... sorta.
-TODO
+
+Chrome and Firefox are starting to roll out some ASM optimizations, though it's still
+a work in progress and you might not see all the performance gains right away.
+
+For compiling to JS, there's a project called LLVM that's sorta the Swiss army knife of compilers.
+It provides a common format for all the gunk that sits in the middle of the
+compilation process. So there are a number of things that can take various
+languages and feed them *in* to LLVM, and once you're there you can output your gunk
+to any number of supported output sources.
+
+One of those output sources is Emscripten, which goes from LLVM to ASM-compatible JavaScript.
+So in theory anything that you can pump into LLVM could run in a browser.
+Right now people are running C and C++ code in the browser by way of this toolchain,
+though it's mostly for benchmarking and experimental purposes at the moment.
+
+In practice, making ASM languages a pleasant and useful experience will take a bit more work,
+and we're not really there yet. ASM is still in an experimental phase, though
+I think the odds are extremely good for it to see widespread adoption.
 ~~~ENDSECTION~~~
 
 !SLIDE
+# The best is yet to come #
 ~~~SECTION:notes~~~
+We're going to see more and more compiled language options for every piece of front end technology.
+It's already becoming more and more common for back end platforms like Rails and Node to offer
+"asset pipelines" that take care of the compilation step for all your front end assets.
+
+What we have today is pretty great, and I believe what we have in a few years will be
+spectacular.
+
+Imagine a world where you can write your front end application in any number of languages,
+and it automatically works on every browser. A language someone dreamt up *yesterday*
+can hit the web and immediately work everywhere, for everyone. This is the world
+we're going to have very soon, and it's a little bit frightening but very, very exciting.
 ~~~ENDSECTION~~~
 
 !SLIDE
+# We're never getting rid of HTML/CSS/JavaScript #
+# ...but I don't care. #
 ~~~SECTION:notes~~~
+We're never getting rid of Internet Explorer. We're never getting rid of JavaScript.
+
+But that's okay. Pretty soon that isn't going to matter.
 ~~~ENDSECTION~~~
 
 !SLIDE
+# Fin #
 ~~~SECTION:notes~~~
 ~~~ENDSECTION~~~
