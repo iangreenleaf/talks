@@ -209,12 +209,301 @@ never had to worry about all of that stuff again.
 TODO "jquery developers"
 ~~~SECTION:notes~~~
 ~~~ENDSECTION~~~
+TODO jquery doesn't go far enough
+
+!SLIDE
+# Solution: compiled languages! #
+~~~SECTION:notes~~~
+Compiled languages!
+~~~ENDSECTION~~~
+
+!SLIDE
+TODO graphic
+~~~SECTION:notes~~~
+What we do is we write code in a new language. We run that code through a compiler that *translates*
+that language into JavaScript, or HTML, or CSS. So the file the compiler spits out is a fully
+compatible web-ready format, but we can *write* in a language that is as powerful and expressive as
+we can dream.
+
+This workflow is pretty similar to the original compiler workflow, in which you would write some code
+in, say, C, and give that to a compiler that would spit out bytecode. Same idea, but...
+~~~ENDSECTION~~~
+
+!SLIDE incremental bullets
+# JavaScript/CSS/HTML is the new bytecode #
+* Backwards compatible
+* Reasonably powerful
+* Awful to write by hand
+~~~SECTION:notes~~~
+JavaScript, CSS, and HTML are the new bytecode. By compiling to these targets, you can run on
+every browser, from now until forever. Just like bytecode, these technologies provide enough
+power to do the things you need to do, and just like bytecode, they are immensely unpleasant to
+write by hand.
+~~~ENDSECTION~~~
+
+!SLIDE
+# SCSS (née Sass) #
+~~~SECTION:notes~~~
+Our first example is a language called Sass, or SCSS.
+
+This one targets CSS, and fills in a lot of the features that we all miss when we write CSS.
+~~~ENDSECTION~~~
+
+!SLIDE
+# SCSS #
+```scss
+a {
+  color: #484C55;
+}
+```
+~~~SECTION:notes~~~
+SCSS looks a lot like CSS, and in fact any valid CSS is also valid SCSS. But it adds a bunch of stuff on top.
+~~~ENDSECTION~~~
+
+!SLIDE
+# SCSS #
+```scss
+$link-color: #484C55;
+a {
+  color: $link-color;
+}
+```
+~~~SECTION:notes~~~
+Variables! So now when you want to tweak one of your color values, you can do it in one place instead of 50
+places littered throughout your stylesheets.
+~~~ENDSECTION~~~
+
+!SLIDE
+# SCSS #
+```scss
+$link-color: #484C55;
+a {
+  color: $link-color;
+}
+a:hover {
+  color: $link-color + #444;
+}
+```
+~~~SECTION:notes~~~
+You can do math! We want to slightly lighten links on hover, and rather than define a new color we just tell
+SCSS to lighten it by a certain amount relative to our variable.
+~~~ENDSECTION~~~
+
+!SLIDE
+# SCSS #
+```scss
+.nav-bar {
+  a {
+    color: black;
+  }
+}
+```
+~~~SECTION:notes~~~
+You can nest selectors, and this will compile out to what you would expect.
+*Much* more pleasant than writing out big sequences of selectors for every single element you need to style.
+~~~ENDSECTION~~~
+
+!SLIDE
+# SCSS #
+```scss
+@mixin highlighted {
+  background-color: yellow;
+  font-style: italic;
+}
+p.callout {
+  @include highlighted();
+}
+```
+~~~SECTION:notes~~~
+You can define mixins, which are like reusable functions that set CSS rules. Here we define a "highlighted" mixin
+with styling rules, and then we can apply it within any selector we want. Again, this is defining things in
+one place rather than repeated throughout our style sheets.
+~~~ENDSECTION~~~
+
+!SLIDE
+# SCSS + Compass #
+```scss
+.avatar {
+  // No!!!
+  -webkit-border-radius: 5;
+     -moz-border-radius: 5;
+          border-radius: 5;
+}
+```
+~~~SECTION:notes~~~
+Now there's an additional library called Compass that leverages SCSS mixins to provide a whole bunch of
+compatibility features and other helpful stuff.
+
+I hate when I see code like this. It's a nuisance to write, it looks bad, and if another browser
+adds support under their own prefix, your site will still not look good for that browser unless you
+track down every instance of these rules and fix them. This kind of behavior is largely responsible for the
+tremendous mess that has been made of browser prefixes and is close to rendering them as meaningless
+as user agent strings.
+~~~ENDSECTION~~~
+
+!SLIDE
+# SCSS + Compass #
+```scss
+.avatar {
+  // Yess!!!
+  @include border-radius(5);
+}
+```
+~~~SECTION:notes~~~
+The good news is you never have to write that again! Now that you're using Compass, you use their
+provided border radius helper and it automatically spits out all the prefixed stuff for you.
+The Compass maintainers worry about which prefixes and what format, and as long as you keep your
+Compass compiler up to date, your stuff is always correct with *no extra effort from you*.
+
+This is really the promise of compiled languages. We can build with new features and nice APIs,
+*without* sacrificing backwards compatibility and graceful degradation. And we can do it all
+with very little extra effort on our own part, because we are building on the work of others.
+~~~ENDSECTION~~~
+
+!SLIDE
+# Haml #
+~~~SECTION:notes~~~
+HTML hasn't received as much attention as the other two technologies, probably because it's not
+as obviously deficient as CSS and JavaScript. HTML isn't super complicated, and it
+does what it does decently well.
+
+Still, there's a lot of punctuation involved in writing it by hand, plus the opportunity to miss
+a closing bracket and introduce invalid HTML that will more or less continue to work,
+silently swallowing the error until two weeks later you lose your mind over an insane CSS
+bug triggered by the fact that you're styling an invalid DOM.
+
+So we can still find a more pleasant way to write HTML, which is the idea behind Haml.
+~~~ENDSECTION~~~
+
+!SLIDE
+# Haml #
+```haml
+#nav-bar.dropdown
+  %ul.nav-links
+    %li Home
+    %li About
+```
+~~~SECTION:notes~~~
+Haml offers a syntax for defining elements that looks a lot more like CSS selectors and
+strips away most of the unnecessary stuff. You can define IDs and classes for an element,
+as we are doing at the top. Elements are divs by default, unless you specify a different
+element name, as we do with the list.
+
+Nesting is determined by whitespace, so it's impossible to fail to close a tag.
+
+Haml is tightly coupled to the Ruby toolchain, so it doesn't get much use in other
+platforms, but there are similar projects with similar ideas.
+~~~ENDSECTION~~~
+
+!SLIDE
+# CoffeeScript #
+~~~SECTION:notes~~~
+Now we're going to look at JavaScript. JavaScript is the full programming language, so
+it has seen the most interest both because it has the most potential, and because it... has
+the most room for improvement.
+
+The most well-known compiled language that targets JavaScript is CoffeeScript.
+~~~ENDSECTION~~~
+
+!SLIDE
+# CoffeeScript #
+```coffeescript
+num = Math.pow 2, 3
+if true == true
+  console.log "Tautology!"
+```
+~~~SECTION:notes~~~
+CoffeeScript cleans up a lot of JavaScript's unnecessary syntax. Parentheses are optional most
+of the time, semicolons are out, curly braces are gone and mostly replaced by indentation.
+
+And some of the common mistakes in JavaScript are automatically taken care of.
+Our num variable is defined in the local scope, not the global scope, no `var` keyword needed.
+And the double-equals is automatically converted to a triple-equals, because double-equals
+in JavaScript is dangerous and never what you actually want.
+~~~ENDSECTION~~~
+
+!SLIDE
+# CoffeeScript #
+```coffeescript
+animals = ["dog", "cat", "bird"]
+for animal in animals
+  console.log animal
+```
+~~~SECTION:notes~~~
+CoffeeScript is a much more pleasant way to write JavaScript - it's simply easier. Easier to write,
+easier to read and understand. And it's much less likely that a moment's inattention will introduce
+a nasty bug, because there's simply less for you to screw up.
+
+Here's a for loop. You can probably work out what it's going to do.
+~~~ENDSECTION~~~
+
+!SLIDE
+# CoffeeScript #
+```coffeescript
+double = (num) ->
+  num * 2
+
+double(5)
+```
+~~~SECTION:notes~~~
+This is a function in CoffeeScript. CoffeeScript performs implicit returns, so the function will
+automatically return the last statement in the block unless I tell it otherwise.
+
+The arrow syntax takes a little getting used to, but it dramatically reduces the visual noise,
+especially when you are dealing with nested callbacks, which happens a lot with AJAX operations
+or in Node.js.
+~~~ENDSECTION~~~
+
+!SLIDE
+# CoffeeScript #
+```coffeescript
+class Automobile
+  honk: ->
+    console.log "Beep!"
+
+car = new Automobile()
+car.honk()
+```
+~~~SECTION:notes~~~
+CoffeeScript also offers a class structure. Even though it looks very different, these still
+compile down to the agreed-upon standard "class" objects in JavaScript, where the class is a
+function object and methods are attached to the prototype chain.
+~~~ENDSECTION~~~
+
+!SLIDE
+# CoffeeScript #
+```coffeescript
+class PoliceCar extends Automobile
+  honk: ->
+    super
+    console.log "Wee-oo wee-oo wee-oo!"
+```
+~~~SECTION:notes~~~
+CoffeeScript classes offer inheritance too. The CoffeeScript compiler worries about keeping track
+of the prototype chain and all that business, so that we don't have to. And because it's a compiled
+language, it can introduce new keywords like `super` that compile to some less-pretty JavaScript.
+~~~ENDSECTION~~~
+
+!SLIDE
+# CoffeeScript #
+```coffeescript
+document.getElementById("nav-bar").className
+```
+~~~SECTION:notes~~~
+CoffeeScript is a fairly thin layer on top of JavaScript, and a major advantage it reaps from this
+is very simple interoperability. It's extremely simple to work with the DOM from CoffeeScript, and
+to call to 3rd party JavaScript libraries. And it's also simple to call your CoffeeScript code
+from JavaScript. So CoffeeScript can easily be dropped in to an existing project and work
+side-by-side with everything else.
+~~~ENDSECTION~~~
 
 !SLIDE
 ~~~SECTION:notes~~~
 ~~~ENDSECTION~~~
 
-TODO make sure to mention CS integration with existing JS libs
+!SLIDE
+~~~SECTION:notes~~~
+~~~ENDSECTION~~~
 
 !SLIDE
 # ClojureScript #
