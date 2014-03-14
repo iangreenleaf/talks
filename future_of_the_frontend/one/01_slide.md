@@ -214,18 +214,19 @@ never had to worry about all of that stuff again.
 ~~~ENDSECTION~~~
 
 !SLIDE code
+```
     // Check if getElementsByClassName can be trusted
     assertUsableClassName = assert(function( div ) {
     // Opera can't find a second classname (in 9.6)
-    div.innerHTML = "<div class='hidden e'></div><div class='hidden'></div>";
+    div.innerHTML = "&lang;div class='hidden e'&rang;&lang;/div&rang;&lang;div class='hidden'&rang;&lang;/div&rang;";
     if ( !div.getElementsByClassName || !div.getElementsByClassName("e").length ) {
     return false;
     }
-
     // Safari 3.2 caches class attributes and doesn't catch changes
     div.lastChild.className = "e";
     return div.getElementsByClassName("e").length === 2;
     }),
+```
 ~~~SECTION:notes~~~
 jQuery would give some nice method like the class selector and you would call it and it would work nicely.
 
