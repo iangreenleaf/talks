@@ -54,12 +54,20 @@ wasted development hours, but we're finally starting to write off IE6. We're dro
 for it in our libraries and taking it out of our contracts.
 But in that time, IE8 has gone from the promised savior of the franchise to the new most
 hated browser on the web.
+~~~ENDSECTION~~~
 
+!SLIDE
+# Poll #
+~~~SECTION:notes~~~
 I want to do a quick poll, for those of you who watch the analytics for a production application.
 How many of you have a non-negligible base of uses on some version of Internet Explorer?
 Of your IE users, what percentage of them are on IE8 and lower?
 5%? 20%? 50%? More?
+~~~ENDSECTION~~~
 
+!SLIDE
+# Internet Explorer is not going away #
+~~~SECTION:notes~~~
 The stats reported by major trackers are that currently IE 8 is somewhere between a quarter and a half of
 the total Internet Explorer market. And given that IE is still holding on to something like
 a third of the total browser market, most sites do not have the luxury of ignoring it.[1]
@@ -83,14 +91,7 @@ It gets worse.
 
 Mobile web browsers are bad. Really, really bad.
 
-There's Android 2.3, which has a built-in Chrome-ish browser that does just about everything wrong
-when it comes to mobile-specific styling and behavior.
-And that browser is never updated because it's tied to Android OS updates, and carriers abandon
-updates for their devices roughly as soon as they leave the warehouse.
-
-The only reasons we're even close to being able to abandon Android 2.3 support today is the
-short lifecycle of smartphones, plus the relatively high level of user hostility in the mobile web
-world in general.
+Android 2.3 does just about everything wrong when it comes to mobile-specific styling and behavior.
 
 Android 4 is better, but it's far from perfect.
 
@@ -99,6 +100,10 @@ for iOS is actually pleasant. Things randomly break. Perfectly valid CSS creates
 artifacts for no reason. The screen flickers at odd times even though you're not repainting anything.
 iOS 7 comes out and there are actually a bunch of *regressions* in web standards, with no
 explanation and nothing in the release notes.
+
+And right now most mobile browsers only update when you buy a new phone, which would be
+disastrous but for the short lifecycle of smartphones, plus the relatively high level of user hostility in the mobile web
+world in general.
 
 So we're back to sniffing for specific user agents, which is one of the worst feelings imaginable.
 We fill our frontend code with hacks and workarounds, and we paste in inscrutable incantations
@@ -502,7 +507,7 @@ function object and methods are attached to the prototype chain.
     class PoliceCar extends Automobile
       honk: ->
         super
-        console.log "Wee-oo wee-oo wee-oo!"
+        console.log "Wee-oo wee-oo!"
 ~~~SECTION:notes~~~
 CoffeeScript classes offer inheritance too. The CoffeeScript compiler worries about keeping track
 of the prototype chain and all that business, so that we don't have to. And because it's a compiled
@@ -552,7 +557,7 @@ ES6 has new iterators and better for-loops. Pretty nice.
     class PoliceCar extends Automobile {
       honk() {
         super();
-        console.log("Wee-oo wee-oo wee-oo!");
+        console.log("Wee-oo wee-oo!");
       }
     }
 ~~~SECTION:notes~~~
@@ -561,7 +566,8 @@ CoffeeScript added.
 ~~~ENDSECTION~~~
 
 !SLIDE
-    import {firstName, lastName} from './another_file';
+    import {firstName, lastName}
+      from './another_file';
 ~~~SECTION:notes~~~
 It also has a module system for encapsulating code instead of throwing everything into the global scope.
 ~~~ENDSECTION~~~
@@ -600,7 +606,8 @@ a and some other arguments, which will add everything.
 ~~~ENDSECTION~~~
 
 !SLIDE
-    (def shout (fn [x] (.toUpperCase x)))
+    (def shout (fn [x]
+      (.toUpperCase x)))
     (shout "hello")
     (map shout ["hello" "world"])
 ~~~SECTION:notes~~~
@@ -615,7 +622,8 @@ So *this* is Clojure.
 ~~~ENDSECTION~~~
 
 !SLIDE
-    (def shout (fn [x] (.toUpperCase x)))
+    (def shout (fn [x]
+      (.toUpperCase x)))
     (shout "hello")
     (map shout ["hello" "world"])
 ~~~SECTION:notes~~~
