@@ -284,12 +284,11 @@ SCSS looks a lot like CSS, and in fact any valid CSS is also valid SCSS. But it 
 
 !SLIDE
 # SCSS #
-```scss
-$link-color: #484C55;
-a {
-  color: $link-color;
-}
-```
+  @@@ CSS
+  $link-color: #484C55;
+  a {
+    color: $link-color;
+  }
 ~~~SECTION:notes~~~
 Variables! So now when you want to tweak one of your color values, you can do it in one place instead of 50
 places littered throughout your stylesheets.
