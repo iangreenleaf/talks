@@ -307,69 +307,55 @@ This one targets CSS, and fills in a lot of the features that we all miss when w
 ~~~ENDSECTION~~~
 
 !SLIDE
-# SCSS #
-```scss
-a {
-  color: #484C55;
-}
-```
+    a {
+      color: #484C55;
+    }
 ~~~SECTION:notes~~~
 SCSS looks a lot like CSS, and in fact any valid CSS is also valid SCSS. But it adds a bunch of stuff on top.
 ~~~ENDSECTION~~~
 
-!SLIDE
-# SCSS #
-  @@@ CSS
-  $link-color: #484C55;
-  a {
-    color: $link-color;
-  }
+!SLIDE code
+    $link-color: #484C55;
+    a {
+      color: $link-color;
+    }
 ~~~SECTION:notes~~~
 Variables! So now when you want to tweak one of your color values, you can do it in one place instead of 50
 places littered throughout your stylesheets.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# SCSS #
-```scss
-$link-color: #484C55;
-a {
-  color: $link-color;
-}
-a:hover {
-  color: $link-color + #444;
-}
-```
+    $link-color: #484C55;
+    a {
+      color: $link-color;
+    }
+    a:hover {
+      color: $link-color + #444;
+    }
 ~~~SECTION:notes~~~
 You can do math! We want to slightly lighten links on hover, and rather than define a new color we just tell
 SCSS to lighten it by a certain amount relative to our variable.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# SCSS #
-```scss
-.nav-bar {
-  a {
-    color: black;
-  }
-}
-```
+    .nav-bar {
+      a {
+        color: black;
+      }
+    }
 ~~~SECTION:notes~~~
 You can nest selectors, and this will compile out to what you would expect.
 *Much* more pleasant than writing out big sequences of selectors for every single element you need to style.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# SCSS #
-```scss
-@mixin highlighted {
-  background-color: yellow;
-  font-style: italic;
-}
-p.callout {
-  @include highlighted();
-}
-```
+    @mixin highlighted {
+      background-color: yellow;
+      font-style: italic;
+    }
+    p.callout {
+      @include highlighted();
+    }
 ~~~SECTION:notes~~~
 You can define mixins, which are like reusable functions that set CSS rules. Here we define a "highlighted" mixin
 with styling rules, and then we can apply it within any selector we want. Again, this is defining things in
@@ -378,14 +364,18 @@ one place rather than repeated throughout our style sheets.
 
 !SLIDE
 # SCSS + Compass #
-```scss
-.avatar {
-  // No!!!
-  -webkit-border-radius: 5;
-     -moz-border-radius: 5;
-          border-radius: 5;
-}
-```
+~~~SECTION:notes~~~
+Now there's an additional library called Compass that leverages SCSS mixins to provide a whole bunch of
+compatibility features and other helpful stuff.
+~~~ENDSECTION~~~
+
+!SLIDE
+    .avatar {
+      // No!!!
+      -webkit-border-radius: 5;
+         -moz-border-radius: 5;
+              border-radius: 5;
+    }
 ~~~SECTION:notes~~~
 Now there's an additional library called Compass that leverages SCSS mixins to provide a whole bunch of
 compatibility features and other helpful stuff.
@@ -398,13 +388,10 @@ as user agent strings.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# SCSS + Compass #
-```scss
-.avatar {
-  // Yess!!!
-  @include border-radius(5);
-}
-```
+    .avatar {
+      // Yess!!!
+      @include border-radius(5);
+    }
 ~~~SECTION:notes~~~
 The good news is you never have to write that again! Now that you're using Compass, you use their
 provided border radius helper and it automatically spits out all the prefixed stuff for you.
@@ -432,13 +419,10 @@ So we can still find a more pleasant way to write HTML, which is the idea behind
 ~~~ENDSECTION~~~
 
 !SLIDE
-# Haml #
-```haml
-#nav-bar.dropdown
-  %ul.nav-links
-    %li Home
-    %li About
-```
+    #nav-bar.dropdown
+      %ul.nav-links
+        %li Home
+        %li About
 ~~~SECTION:notes~~~
 Haml offers a syntax for defining elements that looks a lot more like CSS selectors and
 strips away most of the unnecessary stuff. You can define IDs and classes for an element,
@@ -462,12 +446,9 @@ The most well-known compiled language that targets JavaScript is CoffeeScript.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# CoffeeScript #
-```coffeescript
-num = Math.pow 2, 3
-if true == true
-  console.log "Tautology!"
-```
+    num = Math.pow 2, 3
+    if true == true
+      console.log "Tautology!"
 ~~~SECTION:notes~~~
 CoffeeScript cleans up a lot of JavaScript's unnecessary syntax. Parentheses are optional most
 of the time, semicolons are out, curly braces are gone and mostly replaced by indentation.
@@ -479,12 +460,9 @@ in JavaScript is dangerous and never what you actually want.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# CoffeeScript #
-```coffeescript
-animals = ["dog", "cat", "bird"]
-for animal in animals
-  console.log animal
-```
+    animals = ["dog", "cat", "bird"]
+    for animal in animals
+      console.log animal
 ~~~SECTION:notes~~~
 Here's a for loop. You can probably work out what it's going to do.
 
@@ -494,13 +472,10 @@ a nasty bug, because there's simply less for you to screw up.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# CoffeeScript #
-```coffeescript
-double = (num) ->
-  num * 2
+    double = (num) ->
+      num * 2
 
-double(5)
-```
+    double(5)
 ~~~SECTION:notes~~~
 This is a function in CoffeeScript. CoffeeScript performs implicit returns, so the function will
 automatically return the last statement in the block unless I tell it otherwise.
@@ -511,15 +486,12 @@ or in Node.js.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# CoffeeScript #
-```coffeescript
-class Automobile
-  honk: ->
-    console.log "Beep!"
+    class Automobile
+      honk: ->
+        console.log "Beep!"
 
-car = new Automobile()
-car.honk()
-```
+    car = new Automobile()
+    car.honk()
 ~~~SECTION:notes~~~
 CoffeeScript also offers a class structure. Even though it looks very different, these still
 compile down to the agreed-upon standard "class" objects in JavaScript, where the class is a
@@ -527,13 +499,10 @@ function object and methods are attached to the prototype chain.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# CoffeeScript #
-```coffeescript
-class PoliceCar extends Automobile
-  honk: ->
-    super
-    console.log "Wee-oo wee-oo wee-oo!"
-```
+    class PoliceCar extends Automobile
+      honk: ->
+        super
+        console.log "Wee-oo wee-oo wee-oo!"
 ~~~SECTION:notes~~~
 CoffeeScript classes offer inheritance too. The CoffeeScript compiler worries about keeping track
 of the prototype chain and all that business, so that we don't have to. And because it's a compiled
@@ -541,10 +510,7 @@ language, it can introduce new keywords like `super` that compile to some less-p
 ~~~ENDSECTION~~~
 
 !SLIDE
-# CoffeeScript #
-```coffeescript
-document.getElementById("nav-bar").className
-```
+    document.getElementById("nav-bar").className
 ~~~SECTION:notes~~~
 CoffeeScript is a fairly thin layer on top of JavaScript, and a major advantage it reaps from this
 is very simple interoperability. It's extremely simple to work with the DOM from CoffeeScript, and
@@ -564,11 +530,7 @@ Another language that compiles to JavaScript is... JavaScript. Bear with me for 
 # ...well, ES6 to be precise #
 ~~~SECTION:notes~~~
 Another language that compiles to JavaScript is... JavaScript. Bear with me for a moment.
-~~~ENDSECTION~~~
 
-!SLIDE
-# ES6 #
-~~~SECTION:notes~~~
 The next generation of JavaScript is ES6. It's going to be introducing a nice set of features,
 but even once ES6 is finalized, we would generally have to wait until every browser supported
 ES6 before we could safely roll it out.
@@ -579,36 +541,27 @@ nice new features of ES6, but your code still works fro everyone.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# ES6 #
-```javascript
-for (let element of [1, 2, 3]) {
-  console.log(element);
-}
-```
+    for (let element of [1, 2, 3]) {
+      console.log(element);
+    }
 ~~~SECTION:notes~~~
 ES6 has new iterators and better for-loops. Pretty nice.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# ES6 #
-```javascript
-class PoliceCar extends Automobile {
-  honk() {
-    super();
-    console.log("Wee-oo wee-oo wee-oo!");
-  }
-}
-```
+    class PoliceCar extends Automobile {
+      honk() {
+        super();
+        console.log("Wee-oo wee-oo wee-oo!");
+      }
+    }
 ~~~SECTION:notes~~~
 It has classes and inheritance. It has, in fact, a lot of the same things that
 CoffeeScript added.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# ES6 #
-```javascript
-import {firstName, lastName} from './another_file';
-```
+    import {firstName, lastName} from './another_file';
 ~~~SECTION:notes~~~
 It also has a module system for encapsulating code instead of throwing everything into the global scope.
 ~~~ENDSECTION~~~
@@ -624,6 +577,7 @@ the overhead of learning a new language.
 
 !SLIDE
 # ClojureScript #
+## By way of Clojure ##
 ~~~SECTION:notes~~~
 Moving slightly further afield, we encounter ClojureScript.
 
@@ -634,11 +588,8 @@ before it was cool.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# Clojure #
-```clojure
-(def a 5)
-(+ a 2 3)
-```
+    (def a 5)
+    (+ a 2 3)
 ~~~SECTION:notes~~~
 Clojure looks like this. The syntax is different from most popular languages -- that's the result of being a LISP.
 Parens enclose a function call, and the first thing inside the parens is the function being called.
@@ -649,10 +600,9 @@ a and some other arguments, which will add everything.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# Clojure #
-(def shout (fn [x] (.toUpperCase x)))
-(shout "hello")
-(map shout ["hello" "world"])
+    (def shout (fn [x] (.toUpperCase x)))
+    (shout "hello")
+    (map shout ["hello" "world"])
 ~~~SECTION:notes~~~
 Here we're defining a function, "shout", that takes an argument and uppercases it.
 We can then call that function on a string.
@@ -665,10 +615,9 @@ So *this* is Clojure.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# ClojureScript #
-(def shout (fn [x] (.toUpperCase x)))
-(shout "hello")
-(map shout ["hello" "world"])
+    (def shout (fn [x] (.toUpperCase x)))
+    (shout "hello")
+    (map shout ["hello" "world"])
 ~~~SECTION:notes~~~
 *This* is ClojureScript.
 
@@ -686,14 +635,11 @@ it's own immutable data types, and has a significant amount of extra runtime bui
 ~~~ENDSECTION~~~
 
 !SLIDE
-TODO
-```clojure
-(def foo (js-obj "bar" "baz"))
-; var foo = {bar: "baz"};
-(set! (.-bar foo) "quux")
-(def clojure-foo (js->clj foo))
-(clj->js clojure-foo)
-```
+    (def foo (js-obj "bar" "baz"))
+    ; var foo = {bar: "baz"};
+    (set! (.-bar foo) "quux")
+    (def clojure-foo (js->clj foo))
+    (clj->js clojure-foo)
 ~~~SECTION:notes~~~
 ClojureScript offers some extra functionality to bridge the gap between Clojure and the browser runtime.
 
