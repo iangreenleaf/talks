@@ -1,11 +1,31 @@
 !SLIDE
 # The Future of the Front End #
+## or: How I Learned To Stop Worrying And Love JavaScript ##
 
 !SLIDE
-TODO about me
+# About me #
+* @iangreenleaf
+* Full-stack Rails developer
+* Hire me! dev@iangreenleaf.com
+* I wrote a book on CoffeeScript: http://goo.gl/5WtQdg
+
+~~~SECTION:notes~~~
+Hello, everyone! My name is Ian Young.
+
+I live down in North Park and this is my first time up here, so I want to say
+thanks to Daniel and Michael for inviting me to come give this talk.
+
+I'm a full-stack developer; I do mostly Rails work with a slight emphasis on the back end.
+The good news is that you can hire me! I'm available for part-time contract work, so
+if you're interested come talk to me afterward or send me an email.
+
+And, I wrote a book on CoffeeScript recently titled CoffeeScript Application Development.
+I'll be talking about CoffeeScript some tonight, but I have plenty more to say on the
+topic, so if you're interested you can check that out.
+~~~ENDSECTION~~~
 
 !SLIDE
-Predicting the future...
+# Predicting the future... #
 
 ~~~SECTION:notes~~~
 I'm here to talk to you about the future of the front end.
@@ -25,7 +45,7 @@ So let's start with where we are right now, and a few things that are *not* goin
 ~~~ENDSECTION~~~
 
 !SLIDE
-Internet Explorer is not going away
+# Internet Explorer is not going away #
 ~~~SECTION:notes~~~
 Internet Explorer is not going away.
 
@@ -103,7 +123,7 @@ we've copied from Stack Overflow because someone else says they worked, kinda, m
 
 It's bad. Mobile is bad right now, and it's going to be bad for a while yet, because the devices
 are far more interested in supporting native apps than they are in web applications that
-treat all ecosystems fairly.
+treat all ecosystems fairly and don't advantage them.
 ~~~ENDSECTION~~~
 
 !SLIDE
@@ -241,6 +261,8 @@ power to do the things you need to do, and just like bytecode, they are immensel
 write by hand.
 ~~~ENDSECTION~~~
 
+TODO "I;m going to give some examples"
+
 !SLIDE
 # SCSS (née Sass) #
 ~~~SECTION:notes~~~
@@ -334,7 +356,7 @@ one place rather than repeated throughout our style sheets.
 Now there's an additional library called Compass that leverages SCSS mixins to provide a whole bunch of
 compatibility features and other helpful stuff.
 
-I hate when I see code like this. It's a nuisance to write, it looks bad, and if another browser
+I hate when I see code like this. It's a nuisance to write, easy to screw up, and if another browser
 adds support under their own prefix, your site will still not look good for that browser unless you
 track down every instance of these rules and fix them. This kind of behavior is largely responsible for the
 tremendous mess that has been made of browser prefixes and is close to rendering them as meaningless
@@ -498,11 +520,65 @@ side-by-side with everything else.
 ~~~ENDSECTION~~~
 
 !SLIDE
+# JavaScript #
+# ...well, ES6 to be precise #
 ~~~SECTION:notes~~~
+Another language that compiles to JavaScript is... JavaScript. Bear with me for a moment.
 ~~~ENDSECTION~~~
 
 !SLIDE
+# ES6 #
 ~~~SECTION:notes~~~
+The next generation of JavaScript is ES6. It's going to be introducing a nice set of features,
+but even once ES6 is finalized, we would generally have to wait until every browser supported
+ES6 before we could safely roll it out.
+
+Well, not any more! There are several libraries being developed with the goal of taking
+shiny ES6 JavaScript and compiling it *back* to the JavaScript of today. So you use all the
+nice new features of ES6, but your code still works fro everyone.
+~~~ENDSECTION~~~
+
+!SLIDE
+# ES6 #
+```javascript
+for (let element of [1, 2, 3]) {
+  console.log(element);
+}
+```
+~~~SECTION:notes~~~
+ES6 has new iterators and better for-loops. Pretty nice.
+~~~ENDSECTION~~~
+
+!SLIDE
+# ES6 #
+```javascript
+class PoliceCar extends Automobile {
+  honk() {
+    super();
+    console.log("Wee-oo wee-oo wee-oo!");
+  }
+}
+```
+~~~SECTION:notes~~~
+It has classes and inheritance.
+~~~ENDSECTION~~~
+
+!SLIDE
+# ES6 #
+```javascript
+import {firstName, lastName} from './another_file';
+```
+~~~SECTION:notes~~~
+It has a module system for encapsulating code instead of throwing everything into the global scope.
+~~~ENDSECTION~~~
+
+!SLIDE
+# ...and more #
+~~~SECTION:notes~~~
+It has a bunch of cool stuff, and if we can write ES6 now instead of twiddling our thumbs waiting for
+full adoption, it becomes a very viable alternative. Writing ES6 and compiling for compatibility
+could strike a nice middle ground that mirrors many of the benefits of CoffeeScript without
+the overhead of learning a new language.
 ~~~ENDSECTION~~~
 
 !SLIDE
@@ -690,7 +766,8 @@ we're going to have very soon, and it's a little bit frightening but very, very 
 ~~~SECTION:notes~~~
 We're never getting rid of Internet Explorer. We're never getting rid of JavaScript.
 
-But that's okay. Pretty soon that isn't going to matter.
+But that's okay. We're never getting rid of them, but we aren't going to be *using*
+them for much longer.
 ~~~ENDSECTION~~~
 
 !SLIDE
