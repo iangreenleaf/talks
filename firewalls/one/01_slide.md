@@ -27,7 +27,7 @@ of "just who do you think you are?".
 ~~~ENDSECTION~~~
 
 !SLIDE
-# ?! #
+![?!](eyebrow.gif)
 ~~~SECTION:notes~~~
 So recently I posed a question on the SDRuby mailing list asking if firewalls
 were still a necessary thing, and I received a couple responses along the lines
