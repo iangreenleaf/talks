@@ -153,7 +153,7 @@ Firewalls, to me, always conjure up associations like...
 # Network administrators #
 
 !SLIDE
-# 1980's era Cisco hardware #
+# ![1980's era Cisco hardware](cisco.jpg) #
 
 !SLIDE
 # NATs #
@@ -163,10 +163,13 @@ Firewalls, to me, always conjure up associations like...
 ## Keep it secret; keep it safe ##
 
 !SLIDE
-# Network diagrams #
+# ![Network diagrams](network_diagram.png) #
 
 !SLIDE
 # Stupid crap interfering with my ability to play World of Warcraft #
+
+!SLIDE
+# ![Raaaargh](tauren.gif) #
 
 !SLIDE
 # Let go of your fear #
