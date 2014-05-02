@@ -29,10 +29,6 @@ of "just who do you think you are?".
 !SLIDE
 ![?!](eyebrow.gif)
 ~~~SECTION:notes~~~
-So recently I posed a question on the SDRuby mailing list asking if firewalls
-were still a necessary thing, and I received a couple responses along the lines
-of "just who do you think you are?".
-
 Now, I've always been fortunate enough to have someone else around who's responsible for
 the public-facing servers, so I'd never had to confront this issue myself.
 ~~~ENDSECTION~~~
@@ -94,8 +90,8 @@ the public-facing servers, so I'd never had to confront this issue myself.
 # Redis #
 * Local connections possible, off by default
 * Authentication possible, off by default
-
 ~~~SECTION:notes~~~
+
 * Redis is open to the world by default
 * It too offers weak authentication
 ~~~ENDSECTION~~~
@@ -128,7 +124,8 @@ more or less continue on with my work.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# Default to the least bad thing #
+# Default to the #
+# least bad thing #
 ~~~SECTION:notes~~~
 One of the tenets of this policy is that if I *fail* to take the correct set of steps,
 the system should default to the least bad thing.
