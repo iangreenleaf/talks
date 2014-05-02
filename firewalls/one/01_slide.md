@@ -295,13 +295,21 @@ You should also probably do HTTPS, but I'm not gonna show that because it's bori
 
 !SLIDE
 # Ansible #
+    name: pass HTTP through firewall
+    ufw: rule=allow port=80 proto=tcp
+
+!SLIDE
+# Ansible #
     name: pass SSH through firewall
     ufw: rule=allow name=OpenSSH
 
 !SLIDE
-# Ansible #
-    name: pass HTTP through firewall
-    ufw: rule=allow port=80 proto=tcp
+# Extra credit: rate limiting #
+
+!SLIDE
+# Rate limiting #
+    name: pass SSH through firewall
+    ufw: rule=limit name=OpenSSH
 
 !SLIDE
 # That's it! #
