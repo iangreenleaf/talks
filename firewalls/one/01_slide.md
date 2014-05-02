@@ -1,5 +1,6 @@
 !SLIDE
-# How I Learned To Stop Worrying And Love Firewalls #
+# Gaze long into the firewall #
+# and the firewall also gazes into you #
 
 !SLIDE
 # About me #
@@ -8,11 +9,12 @@
 * Hire me! dev@iangreenleaf.com
 
 ~~~SECTION:notes~~~
+
 * My name
 * I'm a full stack Rails developer
 * Prefer backend, don't like devops. Happy that other people do.
 * Hire me, I promise I'll put a firewall on your machine, but please
-  don't hire me to do devops.
+  hire mre to write awesome code for you, not to do devops.
 ~~~ENDSECTION~~~
 
 !SLIDE
@@ -36,9 +38,10 @@ the public-facing servers, so I'd never had to confront this issue myself.
 ~~~ENDSECTION~~~
 
 !SLIDE
-# Accepting unauthenticated input #
+# Wide-open ports #
 # Isn't that a little 1997? #
 ~~~SECTION:notes~~~
+
 * Never saw the database port argument as convincing
 * DBs accept only connections from the same machine by default
 * And conventionally have password auth as a backup
@@ -47,6 +50,7 @@ the public-facing servers, so I'd never had to confront this issue myself.
 !SLIDE
 # Well... #
 ~~~SECTION:notes~~~
+
 * Then I started looking at other services we use in a modern web stack
 * Servers aren't just code+SQL any more
 ~~~ENDSECTION~~~
@@ -55,7 +59,9 @@ the public-facing servers, so I'd never had to confront this issue myself.
 # MongoDB #
 * Local connections only by default
 * Authentication possible, off by default
+
 ~~~SECTION:notes~~~
+
 * MongoDB usually ships with local-only defaults. Usually.
 * It offers authentication, but it's off by default and our tools don't
   necessarily prompt us to enable it.
@@ -65,7 +71,9 @@ the public-facing servers, so I'd never had to confront this issue myself.
 # Sphinx full-text search #
 * Local connections possible, off by default
 * No authentication
+
 ~~~SECTION:notes~~~
+
 * Sphinx is open to the world by default
 * No authentication possible
 ~~~ENDSECTION~~~
@@ -74,7 +82,9 @@ the public-facing servers, so I'd never had to confront this issue myself.
 # Memcached #
 * Local connections possible, off by default
 * Authentication sorta possible, off by default
+
 ~~~SECTION:notes~~~
+
 * Memcache is open to the world by default
 * It sorta offers authentication, but it's nothing I would put much trust in,
   and hard to say if our tools could even handle it.
@@ -84,6 +94,7 @@ the public-facing servers, so I'd never had to confront this issue myself.
 # Redis #
 * Local connections possible, off by default
 * Authentication possible, off by default
+
 ~~~SECTION:notes~~~
 * Redis is open to the world by default
 * It too offers weak authentication
@@ -174,7 +185,9 @@ need to worry about are simple, effective, and only the tiniest bit painful.
 * Default to DENY
 * Assume every machine is public
 * Simple firewall on each machine
+
 ~~~SECTION:notes~~~
+
 * We're going to set a default policy of DENY. This means that all traffic is rejected unless we specifically allow it.
   Remember, least bad thing by default.
 * We're going to treat all of our machines as if they are public-facing. It doesn't matter if they are or not,
@@ -232,44 +245,36 @@ If I'm configuring things manually, the most damage I could do is always *the mo
 
 !SLIDE
 # Chef #
-```
-firewall 'ufw' do
-  action :enable
-end
-```
+    firewall 'ufw' do
+      action :enable
+    end
 ~~~SECTION:notes~~~
 ~~~ENDSECTION~~~
 
 !SLIDE
 # Chef #
-```
-firewall_rule 'default' do
-  action :deny
-end
-```
+    firewall_rule 'default' do
+      action :deny
+    end
 ~~~SECTION:notes~~~
 ~~~ENDSECTION~~~
 
 !SLIDE
 # Chef #
-```
-firewall_rule 'ssh' do
-  port     22
-  action   :allow
-end
-```
+    firewall_rule 'ssh' do
+      port     22
+      action   :allow
+    end
 ~~~SECTION:notes~~~
 ~~~ENDSECTION~~~
 
 !SLIDE
 # Chef #
-```
-firewall_rule 'http' do
-  port     80
-  protocol :tcp
-  action   :allow
-end
-```
+    firewall_rule 'http' do
+      port     80
+      protocol :tcp
+      action   :allow
+    end
 ~~~SECTION:notes~~~
 You should also probably do HTTPS, but I'm not gonna show that because it's boring.
 ~~~ENDSECTION~~~
@@ -279,35 +284,27 @@ You should also probably do HTTPS, but I'm not gonna show that because it's bori
 
 !SLIDE
 # Ansible #
-## `ufw` playbook in 1.6+ ##
+## `ufw` module in 1.6+ ##
 
 !SLIDE
 # Ansible #
-```
-- name: install ufw
-  apt: pkg=ufw state=present
-```
+    - name: install ufw
+      apt: pkg=ufw state=present
 
 !SLIDE
 # Ansible #
-```
-- name: enable firewall
-  ufw: state=enabled policy=deny
-```
+    - name: enable firewall
+      ufw: state=enabled policy=deny
 
 !SLIDE
 # Ansible #
-```
-- name: pass SSH through firewall
-  ufw: rule=allow name=OpenSSH
-```
+    - name: pass SSH through firewall
+      ufw: rule=allow name=OpenSSH
 
 !SLIDE
 # Ansible #
-```
-- name: pass HTTP through firewall
-  ufw: rule=allow port=80 proto=tcp
-```
+    - name: pass HTTP through firewall
+      ufw: rule=allow port=80 proto=tcp
 
 !SLIDE
 # That's it! #
