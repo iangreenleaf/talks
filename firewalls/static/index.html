@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>How I learned to stop worrying and love firewalls</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+
+  <link rel="stylesheet" href=".//css/reset.css" type="text/css"/>
+
+  <link type="text/css" href=".//css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href=".//css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href=".//css/sh_style.css" rel="stylesheet" />
+  <link type="text/css" href=".//css/tipsy.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href=".//css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src=".//js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src=".//js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src=".//js/jquery-print.js"></script>
+  <script type="text/javascript" src=".//js/jquery.batchImageLoad.js"></script>
+  <script type="text/javascript" src=".//js/jquery.parsequery.min.js"></script>
+  <script type="text/javascript" src=".//js/jquery.doubletap-0.1.js"></script>
+  <script type="text/javascript" src=".//js/jquery.tipsy.js"></script>
+
+  <script type="text/javascript" src=".//js/fg.menu.js"></script>
+  <script type="text/javascript" src=".//js/showoff.js"></script>
+  <script type="text/javascript" src=".//js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src=".//js/sh_main.min.js"></script>
+  <script type="text/javascript" src=".//js/core.js"></script>
+  <script type="text/javascript" src=".//js/showoffcore.js"></script>
+  <script type="text/javascript" src=".//js/coffee-script.js"></script>
+
+  
+    
+  
+
+  
+    
+    <link rel="stylesheet" href=".//file/style.css" type="text/css"/>
+  
+
+  
+
+  <script type="text/javascript">
+  $(function(){
+      setupPreso(false, './');
+  });
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+<a tabindex="1" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="stylemenu"><span class="ui-icon ui-icon-triangle-1-s"></span>styles</a>
+<div id="stylepicker" class="hidden"></div>
+
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">g</td><td>toggle follow</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+    <tr><td class="key">P</td><td>toggle pause</td></tr>
+    <tr><td class="key">s</td><td>choose style</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso"><center>loading presentation...</center></div>
+<div id="footer">
+  <span id="followMode"></span>
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+  <span id="slideFilename"></span>
+  <img id="disconnected" src="/css/disconnected.png" />
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/1">
+<h1>Gaze long into the firewall</h1>
+
+<h1>and the firewall also gazes into you</h1></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/2">
+<h1>About me</h1>
+
+<ul>
+<li>@iangreenleaf</li>
+<li>Rails developer (backend, <em>not</em> devops)</li>
+<li>Hire me! dev@iangreenleaf.com</li>
+</ul><div class="notes">
+
+<ul>
+<li>My name</li>
+<li>I'm a full stack Rails developer</li>
+<li>Prefer backend, don't like devops. Happy that other people do.</li>
+<li>Hire me, I promise I'll put a firewall on your machine, but please
+hire mre to write awesome code for you, not to do devops.
+</li>
+</ul>
+</div>
+</div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/3">
+<h1>"What's the use of firewalls?"</h1>
+
+<div class="notes"><p>
+So recently I posed a question on the SDRuby mailing list asking if firewalls
+were still a necessary thing, and I received a couple responses along the lines
+of "just who do you think you are?".
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/4">
+<h1>?!</h1>
+
+<div class="notes">
+<p>
+So recently I posed a question on the SDRuby mailing list asking if firewalls
+were still a necessary thing, and I received a couple responses along the lines
+of "just who do you think you are?".</p>
+
+<p>Now, I've always been fortunate enough to have someone else around who's responsible for
+the public-facing servers, so I'd never had to confront this issue myself.
+</p>
+</div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/5">
+<h1>Wide-open ports</h1>
+
+<h1>Isn't that a little 1997?</h1>
+
+<div class="notes">
+
+<ul>
+<li>Never saw the database port argument as convincing</li>
+<li>DBs accept only connections from the same machine by default</li>
+<li>And conventionally have password auth as a backup
+</li>
+</ul>
+</div>
+</div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/6">
+<h1>Well...</h1>
+
+<div class="notes">
+
+<ul>
+<li>Then I started looking at other services we use in a modern web stack</li>
+<li>Servers aren't just code+SQL any more
+</li>
+</ul>
+</div>
+</div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/7">
+<h1>MongoDB</h1>
+
+<ul>
+<li>Local connections only by default</li>
+<li>Authentication possible, off by default</li>
+</ul><div class="notes">
+
+<ul>
+<li>MongoDB usually ships with local-only defaults. Usually.</li>
+<li>It offers authentication, but it's off by default and our tools don't
+necessarily prompt us to enable it.
+</li>
+</ul>
+</div>
+</div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/8">
+<h1>Sphinx full-text search</h1>
+
+<ul>
+<li>Local connections possible, off by default</li>
+<li>No authentication</li>
+</ul><div class="notes">
+
+<ul>
+<li>Sphinx is open to the world by default</li>
+<li>No authentication possible
+</li>
+</ul>
+</div>
+</div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/9">
+<h1>Memcached</h1>
+
+<ul>
+<li>Local connections possible, off by default</li>
+<li>Authentication sorta possible, off by default</li>
+</ul><div class="notes">
+
+<ul>
+<li>Memcache is open to the world by default</li>
+<li>It sorta offers authentication, but it's nothing I would put much trust in,
+and hard to say if our tools could even handle it.
+</li>
+</ul>
+</div>
+</div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/10">
+<h1>Redis</h1>
+
+<ul>
+<li>Local connections possible, off by default</li>
+<li>Authentication possible, off by default</li>
+</ul><div class="notes"><p>
+* Redis is open to the world by default
+* It too offers weak authentication
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/11">
+<h1>Yikes</h1>
+
+<div class="notes"><p>
+So it turns out that SQL servers are more of an exception than a standard when it comes to secured services.
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/12">
+<h1>You <em>could</em> fix each of these individually</h1>
+
+<div class="notes">
+<p>
+And sure, you could lock down each of these options. You could hunt down the appropriate configuration setting
+to restrict each service to local connections or trusted IPs. And you could then <em>test</em> each of these
+services to make sure that it worked.</p>
+
+<p>But do you trust yourself to catch every one? You'll always remember and you'll always
+be the person in charge of adding new services and you'll never suffer from a
+moment's inattention?
+</p>
+</div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/13">
+<h1>My ops policy:</h1>
+
+<h2>Assume I am stupid</h2>
+
+<div class="notes"><p>
+When I plan anything, I have a policy that the system should be resilient to me doing the stupidest possible thing
+at any moment. If I contract a space virus and come back to work a shambling zombie, I should be able to
+more or less continue on with my work.
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/14">
+<h1>Default to the least bad thing</h1>
+
+<div class="notes">
+<p>
+One of the tenets of this policy is that if I <em>fail</em> to take the correct set of steps,
+the system should default to the least bad thing.</p>
+
+<p>This, I realized, is what firewalls are for.
+</p>
+</div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/15">
+<h1>Firewalls are dead</h1>
+
+<h1>Long live firewalls</h1>
+
+<div class="notes"><p>
+We don't <em>need</em> firewalls. But having a firewall in place means that if I completely fail to
+do anything else, by default my stuff is still protected.
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/16">
+<h1>When you hear "firewall", do you think of...</h1>
+
+<div class="notes">
+<p>
+But I've always had pretty negative feelings towards the idea of firewalls.</p>
+
+<p>Firewalls, to me, always conjure up associations like...
+</p>
+</div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/17">
+<h1>Network administrators</h1></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/18">
+<h1>1980's era Cisco hardware</h1></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/19">
+<h1>NATs</h1></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/20">
+<h1>ssh me@server -p 2525</h1>
+
+<h2>Keep it secret; keep it safe</h2></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/21">
+<h1>Network diagrams</h1></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/22">
+<h1>Stupid crap interfering with my ability to play World of Warcraft</h1></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/23">
+<h1>Let go of your fear</h1>
+
+<div class="notes">
+<p>
+Thos things still exist. And still suck.</p>
+
+<p>But it doesn't have to be like that. The only firewalls we, dear Ruby developers,
+need to worry about are simple, effective, and only the tiniest bit painful.
+</p>
+</div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/24">
+<h1>Firewalls that don't suck</h1>
+
+<ul>
+<li>Default to DENY</li>
+<li>Assume every machine is public</li>
+<li>Simple firewall on each machine</li>
+</ul><div class="notes">
+
+<ul>
+<li>We're going to set a default policy of DENY. This means that all traffic is rejected unless we specifically allow it.
+Remember, least bad thing by default.</li>
+<li>We're going to treat all of our machines as if they are public-facing. It doesn't matter if they are or not,
+because if we do it this way we're guaranteed protected. Moving to a new hosting provider? Great. Least bad thing by default.</li>
+<li>And we're going to run a simple firewall on each machine. This firewall will open whichever ports are safe on that
+particular machine. No complicated policies or central point of confusion. Doesn't matter if all the machines are on
+a shared private network. Doesn't matter.
+</li>
+</ul>
+</div>
+</div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/25">
+<h1>PSA: Make sure to open your SSH port!</h1>
+
+<div class="notes"><p>
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/26">
+<h1>iptables</h1>
+
+<div class="notes">
+<p>
+iptables is a venerable Unix firewalling utility, and it's still the gold standard in the field.</p>
+
+<p>You run it on each machine, you give it rules, and it looks at all traffic and decides whether to drop it or not.</p>
+
+<p>It's very good at this. It's also a little annoying to use.</p>
+
+<ul>
+<li>It takes all config as command-line inputs, which is not super compatible with, say, configuration management.</li>
+<li>It loses everything on restart. You want your machine to be misconfigured by default any time you reboot?
+Of course not. Assume stupidity.</li>
+<li>Two different configs for IPv4 and IPv6, because the best way to prepare for the IPv6 switchover is to have no idea
+if your infrastructure has a consistent configuration between the two.
+</li>
+</ul>
+</div>
+</div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/27">
+<h1>ufw</h1>
+
+<div class="notes">
+<p>
+There are ways to deal with the shortcomings of iptables, but we're going to get some help.</p>
+
+<p>ufw stands for "Uncomplicated Firewall". It's an Ubuntu thing, but is available on all Debian systems, and I think others?</p>
+
+<p>It's a wrapper to more easily configure iptables. Same chocolatey core, tasty candy shell.
+</p>
+</div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/28">
+<h1>Chef/Ansible</h1>
+
+<h2>Because you <em>are</em> automating, right?</h2>
+
+<div class="notes">
+<p>
+And of course we're going to automate the entire configuration.</p>
+
+<p>Assume stupidity / least bad by default isn't even <em>possible</em> if I'm doing stuff manually.</p>
+
+<p>If I'm configuring things manually, the most damage I could do is always <em>the most damage</em>.
+</p>
+</div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/29">
+<h1>Chef</h1>
+
+<h2>
+<code>firewall</code> cookbook</h2></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/30">
+<h1>Chef</h1>
+
+<pre><code>firewall 'ufw' do
+  action :enable
+end
+</code></pre>
+
+<div class="notes"><p>
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/31">
+<h1>Chef</h1>
+
+<pre><code>firewall_rule 'default' do
+  action :deny
+end
+</code></pre>
+
+<div class="notes"><p>
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/32">
+<h1>Chef</h1>
+
+<pre><code>firewall_rule 'ssh' do
+  port     22
+  action   :allow
+end
+</code></pre>
+
+<div class="notes"><p>
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/33">
+<h1>Chef</h1>
+
+<pre><code>firewall_rule 'http' do
+  port     80
+  protocol :tcp
+  action   :allow
+end
+</code></pre>
+
+<div class="notes"><p>
+You should also probably do HTTPS, but I'm not gonna show that because it's boring.
+</p></div></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/34">
+<h1>That wasn't so bad</h1></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/35">
+<h1>Ansible</h1>
+
+<h2>
+<code>ufw</code> module in 1.6+</h2></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/36">
+<h1>Ansible</h1>
+
+<pre><code>- name: install ufw
+  apt: pkg=ufw state=present
+</code></pre></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/37">
+<h1>Ansible</h1>
+
+<pre><code>- name: enable firewall
+  ufw: state=enabled policy=deny
+</code></pre></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/38">
+<h1>Ansible</h1>
+
+<pre><code>- name: pass SSH through firewall
+  ufw: rule=allow name=OpenSSH
+</code></pre></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/39">
+<h1>Ansible</h1>
+
+<pre><code>- name: pass HTTP through firewall
+  ufw: rule=allow port=80 proto=tcp
+</code></pre></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/40">
+<h1>That's it!</h1></div>
+</div><div id="one/01_slide" class="slide " data-transition="none"><div class="content " ref="one/01_slide/41">
+<h1>Fin</h1>
+
+<div class="notes"><p>
+</p></div></div>
+</div></div>
+<div id="pauseScreen">
+  PAUSED
+</div>
+
+</body>
+</html>
