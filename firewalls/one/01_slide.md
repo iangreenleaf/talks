@@ -285,23 +285,23 @@ You should also probably do HTTPS, but I'm not gonna show that because it's bori
 
 !SLIDE
 # Ansible #
-    - name: install ufw
-      apt: pkg=ufw state=present
+    name: install ufw
+    apt: pkg=ufw state=present
 
 !SLIDE
 # Ansible #
-    - name: enable firewall
-      ufw: state=enabled policy=deny
+    name: enable firewall
+    ufw: state=enabled policy=deny
 
 !SLIDE
 # Ansible #
-    - name: pass SSH through firewall
-      ufw: rule=allow name=OpenSSH
+    name: pass SSH through firewall
+    ufw: rule=allow name=OpenSSH
 
 !SLIDE
 # Ansible #
-    - name: pass HTTP through firewall
-      ufw: rule=allow port=80 proto=tcp
+    name: pass HTTP through firewall
+    ufw: rule=allow port=80 proto=tcp
 
 !SLIDE
 # That's it! #
