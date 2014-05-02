@@ -1,6 +1,6 @@
 !SLIDE
-# Gaze long into the firewall #
-# and the firewall also gazes into you #
+# The firewall also #
+# gazes into you #
 
 !SLIDE
 # About me #
@@ -27,7 +27,7 @@ of "just who do you think you are?".
 ~~~ENDSECTION~~~
 
 !SLIDE
-# TODO #
+# ?! #
 ~~~SECTION:notes~~~
 So recently I posed a question on the SDRuby mailing list asking if firewalls
 were still a necessary thing, and I received a couple responses along the lines
