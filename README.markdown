@@ -21,6 +21,20 @@ Presented at Full Stack North County, March 2014.
 * [SpeakerDeck](https://speakerdeck.com/iangreenleaf/the-future-of-the-front-end-or-how-i-learned-to-stop-worrying-and-love-javascript)
 * [PDF](https://iangreenleaf.github.io/talks/future_of_the_frontend.pdf)
 
+## Mini Talks: What I've been working on lately ##
+
+Presented at SDRuby, November 2011.
+Covering a wide variety of subjects:
+
+1. Make Backbone.js more comfortable for the Rails developer
+2. Gems for ENUM and SET in activerecord
+3. Run TAP-compatible tests in other languages through Test::Unit
+4. Publish Greasemonkey scripts as Chrome extensions
+5. Ultra-minimalist gem bootstrapping
+
+* [PDF](https://iangreenleaf.github.io/talks/minitalks.pdf)
+* [Source code](./minitalks)
+
 ## Readable Regexps with Rrrex ##
 
 Introducing a Ruby DSL to write regular expressions with human language.
