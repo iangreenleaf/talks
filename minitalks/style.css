@@ -1,0 +1,39 @@
+#preso {
+  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+}
+#preso code, #preso pre {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 40px;
+}
+#preso .commandline code {
+  font-size: 32px;
+}
+#preso .commandline pre {
+  line-height: 32px;
+}
+
+h1 {
+  font-weight: bold;
+}
+h1 strong {
+  font-size: 1.6em;
+}
+
+h2 {
+  font-size: 4em;
+}
+
+.content.subsection {
+  padding: 1em 0;
+  border: 10px solid maroon;
+}
+.content.subsection h1, .content.subsection h2 {
+  color: maroon;
+  background: none;
+  font-weight: bold;
+}
+
+.content.subsection a {
+  color: #666;
+  font-style: italic;
+}
