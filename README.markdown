@@ -11,6 +11,7 @@ Presented at SDRuby, May 2014.
 
 * [SpeakerDeck](https://speakerdeck.com/iangreenleaf/the-firewall-also-gazes-into-you)
 * [PDF](https://iangreenleaf.github.io/talks/firewalls.pdf)
+* [Source code](./firewalls)
 
 ## The Future of the Front End ##
 
@@ -20,6 +21,7 @@ Presented at Full Stack North County, March 2014.
 
 * [SpeakerDeck](https://speakerdeck.com/iangreenleaf/the-future-of-the-front-end-or-how-i-learned-to-stop-worrying-and-love-javascript)
 * [PDF](https://iangreenleaf.github.io/talks/future_of_the_frontend.pdf)
+* [Source code](./future_of_the_frontend)
 
 ## Mini Talks: What I've been working on lately ##
 
@@ -45,3 +47,4 @@ Presented at SDRuby, March 2011.
 * [Online slides](https://iangreenleaf.github.io/talks/rrrex)
 * [SpeakerDeck](https://speakerdeck.com/iangreenleaf/readable-regexps-with-rrrex)
 * [PDF](https://iangreenleaf.github.io/talks/rrrex.pdf)
+* [Source code](./rrrex)
