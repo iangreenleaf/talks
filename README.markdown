@@ -34,6 +34,7 @@ Covering a wide variety of subjects:
 4. Publish Greasemonkey scripts as Chrome extensions
 5. Ultra-minimalist gem bootstrapping
 
+* [Online slides](https://iangreenleaf.github.io/talks/minitalks)
 * [PDF](https://iangreenleaf.github.io/talks/minitalks.pdf)
 * [Source code](./minitalks)
 
