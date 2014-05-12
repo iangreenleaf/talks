@@ -1,6 +1,6 @@
 # Talks I've given #
 
-Slide decks from talks I have presented.
+Slide decks and other supporting material from talks I have presented.
 
 ## The Firewall Also Gazes Into You ##
 
