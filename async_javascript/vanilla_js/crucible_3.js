@@ -1,4 +1,5 @@
 var  c = require("../crucibles");
+var ids = c.input("3");
 
 // // This is the awful version
 // var dbResults = [];
@@ -7,10 +8,10 @@ var  c = require("../crucibles");
 // var networkResult;
 // var collateWaiting = false;
 // var collateResult;
-// for (i=0; i<2; i+=1) {
+// for (i=0; i<ids.length; i+=1) {
 //   (function(i) {
 //     dbWaiting += 1;
-//     c.dbAccess(i, function(data) {
+//     c.dbAccess(ids[i], function(data) {
 //       dbResults[i] = data;
 //       dbWaiting -= 1;
 //       if (dbWaiting === 0) {
@@ -40,10 +41,10 @@ var  c = require("../crucibles");
 var getDbResults = function(callback) {
   var dbResults = [];
   var dbWaiting = 0;
-  for (i=0; i<2; i+=1) {
+  for (i=0; i<ids.length; i+=1) {
     (function(i) {
       dbWaiting += 1;
-      c.dbAccess(i, function(data) {
+      c.dbAccess(ids[i], function(data) {
         dbResults[i] = data;
         dbWaiting -= 1;
         if (dbWaiting === 0) {

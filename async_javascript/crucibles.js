@@ -8,6 +8,13 @@ var _randomAsync = function(id, name, min, max, callback) {
 };
 
 module.exports = {
+  input: function(crucibleNum) {
+    return {
+      "1": [],
+      "2": [1, 2, 3, 4, 5],
+      "3": [1, 2]
+    }[crucibleNum];
+  },
   dbAccess: function(id, callback) {
     _randomAsync(id, "dbAccess", 20, 50, function(){
       callback({data: "db"+id});
