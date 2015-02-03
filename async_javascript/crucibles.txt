@@ -1,0 +1,31 @@
+================
+|| Crucible 1 ||
+================
+
+Single async operation
+
+dbAccess ---> output(d1)
+
+================
+|| Crucible 2 ||
+================
+
+Multiple parallel asyncs
+
+dbAccess -----\
+dbAccess ----\ \
+dbAccess ---------> output(d1,d2,d3,d4,d5)
+dbAccess ----/ /
+dbAccess -----/
+
+================
+|| Crucible 3 ||
+================
+
+Parallel & serial operations, combined
+
+dbAccess ----\
+              ---> collate(d1,d2) ------\
+dbAccess ----/                           ----> output(c1, n1)
+                                        /
+network -------------------------------/
