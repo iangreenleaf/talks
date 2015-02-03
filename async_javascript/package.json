@@ -1,0 +1,26 @@
+{
+  "name": "async_javascript",
+  "version": "1.0.0",
+  "description": "The Asynchronous JavaScript Crucibles",
+  "main": "crucibles.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:iangreenleaf/talks.git"
+  },
+  "keywords": [
+    "async"
+  ],
+  "author": "Ian Young",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iangreenleaf/talks/issues"
+  },
+  "homepage": "https://github.com/iangreenleaf/talks",
+  "private": true,
+  "dependencies": {
+    "async": "^0.9.0"
+  }
+}
