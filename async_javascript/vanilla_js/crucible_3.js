@@ -2,6 +2,7 @@ var  c = require("../crucibles");
 var ids = c.input("3");
 
 // // This is the awful version
+// // And doesn't even have error checking
 // var dbResults = [];
 // var dbWaiting = 0;
 // var networkWaiting = false;
@@ -41,14 +42,22 @@ var ids = c.input("3");
 var getDbResults = function(callback) {
   var dbResults = [];
   var dbWaiting = 0;
+  var errors = [];
   for (i=0; i<ids.length; i+=1) {
     (function(i) {
       dbWaiting += 1;
-      c.dbAccess(ids[i], function(data) {
+      c.dbAccess(ids[i], function(err, data) {
+        if (err) {
+          errors.push(err);
+        }
         dbResults[i] = data;
         dbWaiting -= 1;
         if (dbWaiting === 0) {
-          callback(dbResults);
+          if (errors.length > 0) {
+            callback(errors);
+          } else {
+            callback(null, dbResults);
+          }
         }
       });
     })(i);
@@ -56,8 +65,12 @@ var getDbResults = function(callback) {
 };
 
 var getAndCollate = function(callback) {
-  getDbResults(function(dbResults) {
-    c.collate(dbResults[0], dbResults[1], callback);
+  getDbResults(function(err, dbResults) {
+    if (err) {
+      callback(err);
+    } else {
+      c.collate(dbResults[0], dbResults[1], callback);
+    }
   });
 };
 
@@ -66,25 +79,42 @@ var networkAndCollation = function(callback) {
   var networkResult;
   var collateWaiting;
   var collateResult;
+  var errors = [];
   var tryContinue = function() {
     if (!networkWaiting && !collateWaiting) {
-      callback(collateResult, networkResult);
+      if (errors.length > 0) {
+        callback(errors);
+      } else {
+        callback(null, [collateResult, networkResult]);
+      }
     }
   };
 
   collateWaiting = true;
-  getAndCollate(function(c1) {
+  getAndCollate(function(err, c1) {
+    if (err) {
+      errors.push(err);
+    }
     collateWaiting = false;
     collateResult = c1;
     tryContinue();
   });
 
   networkWaiting = true;
-  c.network(1, function(n1) {
+  c.network(1, function(err, n1) {
+    if (err) {
+      errors.push(err);
+    }
     networkWaiting = false;
     networkResult = n1;
     tryContinue();
   });
 };
 
-networkAndCollation(c.output);
+networkAndCollation(function(err, data) {
+  if (err) {
+    c.errored();
+  } else {
+    c.output(data[0], data[1]);
+  }
+});
