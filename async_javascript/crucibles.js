@@ -34,7 +34,7 @@ module.exports = {
       callback(null, {data: "network"+id});
     });
   },
-  output: function(a/*args...*/) {
+  output: function(/*args...*/) {
     if (process.env.ERRORING) {
       console.log("An error occurred, this output is corrupt!");
       console.log("ヾ(ｏ･ω･)ﾉ");
