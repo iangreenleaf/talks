@@ -21,6 +21,7 @@
   "homepage": "https://github.com/iangreenleaf/talks",
   "private": true,
   "dependencies": {
-    "async": "^0.9.0"
+    "async": "^0.9.0",
+    "q": "^1.1.2"
   }
 }
