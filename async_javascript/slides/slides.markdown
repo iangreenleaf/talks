@@ -1051,7 +1051,7 @@ Putting together this talk improved my opinion of Promises based on how well it 
 ~~~
 
 # Promises #
-## Thumbs down ##
+## Thumbs up ##
 
 ~~~
 
