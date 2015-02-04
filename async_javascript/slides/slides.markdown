@@ -15,9 +15,11 @@ Get a callback when it's done
 Notes:
 
 Asynchronous APIs allow work to happen in the background while execution of the current thread continues.
+
 You call a function and instead of that call blocking and only returning once the result is ready, the call returns right away and says "okay, I'll have an answer for you later."
 
 How do we receive that answer once it's ready?
+
 We provide a callback, which is just a function that is invoked once the operation has completed. That callback function can take arguments that will hold the results of the operation.
 
 ~~~
@@ -47,6 +49,7 @@ fs.stat("/etc/foobar", function(err, stats) {
 Notes:
 
 And for those of you who do Node, you're very, very used to it.
+
 Node uses async operations as the core performance principle, so everything in Node that involves I/O has an asynchronous function.
 
 ~~~
@@ -60,6 +63,7 @@ Hard to reason about
 Notes:
 
 Asynchronous APIs have some really great performance characteristics because they sidestep the common I/O bottlenecks.
+
 And sometimes async is the only model that fits conceptually, such as when dealing with interactivity.
 
 But asynchronous code can be more difficult to reason about than standard imperative code.
@@ -100,15 +104,11 @@ db.table('unprocessed_files').first(function(filename) {
 
 Notes:
 
-The Pyramid of Doom looks something like this.
-It's where you're performing a bunch of asynchronous operations and end up with deeply nested callbacks.
-
-Describe what's happening.
-
 So you end up about 8 levels of indentation deep and you've lost track of what's happening and it's terrible.
 
 Now, it's true that this code I'm showing you sucks.
 But I don't think it makes sense to blame async for this.
+
 Let's pretend that we've got a magical synchronous API that's equivalent and will let us flatten this code out.
 
 ~~~
@@ -194,6 +194,7 @@ popAndProcessFile(function(err) {
 Notes:
 
 This code has all the same async stuff going on, but it's not nearly so bad.
+
 Each function was easy to understand, and we've genericized some of the functions so they could be reused elsewhere in our imaginary application.
 
 ~~~
@@ -203,8 +204,8 @@ Each function was easy to understand, and we've genericized some of the function
 
 Notes:
 
-So don't worry about the Pyramid of Doom.
 The way you avoid callback hell is you write decent code, and when you don't write decent code you refactor it as soon as practicable.
+
 The same good coding practices that you *should* be following in your synchronous programming will take you a long way with async.
 
 Which is not to say that there's nothing to worry about once you start using a serious amount of asynchronous APIs.
@@ -227,8 +228,6 @@ This is what you should fear.
 
 Don't describe in detail here.
 
-Describe
-
 And then, on top of it all, we need to handle errors sensibly, whatever that might mean for our application.
 
 It's this sort of logic that can quickly become difficult to deal with, especially when you're encountering it all the time.
@@ -240,13 +239,18 @@ It's this sort of logic that can quickly become difficult to deal with, especial
 Notes:
 
 Various solutions exist that take different approaches to helping tame asynchronous code.
+
 I want to give you a better framework for evaluating these solutions, and help you worry about the right things and not the wrong things.
 
-So I've devised a set of three crucibles, little theoretical problems that I think are relevant to the most common use cases that you'll want an async solution to help you with.
+I've devised a set of three crucibles, little theoretical problems that I think are relevant to the most common use cases that you'll want an async solution to help you with.
+
 I'm going to walk through these crucibles to evaluate four popular solutions, so you can see how each one works and how they compare to each other.
 
-And then when you find another solution that I haven't covered, or you need to pick a solution for a project you're working on, I want you to remember these crucibles.
-Pick a solution based on how well it solves these problems, not based on how many indentations or curly braces it involves.
+When you find another solution, remember these crucibles.
+
+Pick a solution based on how well it solves these problems, not how many indentations or curly braces it does or doesn't have.
+
+Let's meet the three crucibles.
 
 ~~~
 
@@ -261,7 +265,9 @@ dbAccess ---> output(d1)
 Notes:
 
 This is the simplest crucible.
-You'll be doing this sort of thing thousands of times in your asynchronous code, where you perform an asynchronous action and then when it finishes, you do something with the results.
+
+You'll be doing this sort of thing thousands of times in your asynchronous code.
+
 This crucible exists to kick the tires and see how each async solution handles the basic unit of asynchronicity.
 
 ~~~
@@ -280,7 +286,8 @@ dbAccess -----/
 
 Notes:
 
-This is, I think, the next most common situation you'll run into.
+This is the next most common situation you'll run into.
+
 You have more than one asynchronous operation, and you want to run them in parallel, because that's the whole point of having them be asynchronous.
 
 But here's the problem: you need to wait until they're *all* finished, and then you need to do something with the combined results of all the operations.
@@ -308,25 +315,27 @@ network -------------------------------/
 Notes:
 
 And finally we get to the crucible I showed you earlier.
-This one is real evil.
+This one is really evil.
 
 I designed this one to be representative of the most convoluted chain of logic that you're still very likely to run into.
 
-Describe.
+*Describe.*
 
 If your solution can handle this case without breaking a sweat, then it's pretty well equipped to deal with the sorts of asynchronous problems that you're probably going to run into as you build whatever you're building.
 
 ~~~
 
-# The API #
+# Test API #
 
 input: function([string]crucibleNum)
 
-Returns an array of ids to query the DB
+Notes:
+
+I built a little harness to run code against that does setup and emulates I/O operations.
 
 ~~~
 
-# The API #
+# Test API #
 
 output: function([any]args...)
 
@@ -334,7 +343,7 @@ errored: function()
 
 ~~~
 
-# The API #
+# Test API #
 
 dbAccess: function([int]id, callback(err, [obj]data))
 
@@ -345,14 +354,14 @@ Behind the scenes these are all just implemented with variable timeouts to fake 
 
 ~~~
 
-# The API #
+# Test API #
 
 collate: function([obj]d1, [obj]d2,
 <br />callback(err, [string]result))
 
 ~~~
 
-# The API #
+# Test API #
 
 network: function([int]id, callback(err, [obj]data))
 
@@ -379,11 +388,12 @@ I'm hoping that including it in this panel will give you a look at its poor perf
 
 Notes:
 
-There's a feature in the upcoming ES6 standard for a thing called generators, and one of the things these can do is take asynchronous JavaScript and make it look synchronous.
+There's a feature in the upcoming ES6 standard for a thing called generators
+
 I know there's also at least one popular library based on this called Task.js, but I'm not going to cover this because *reasons*.
 
-But if you like it and you want to consider it for your project, I've given you the evaluation.
-See how it performs.
+But if you like it and you want to consider it for your project, I've given you the evaluation tools.
+Write your own and see how it performs.
 
 ~~~
 
@@ -398,8 +408,9 @@ See how it performs.
 
 ```javascript
 var  c = require("../crucibles");
+var id = c.input("1");
 
-c.dbAccess(1, function(err, data) {
+c.dbAccess(id, function(err, data) {
   if (err) {
     c.errored();
   } else {
@@ -410,16 +421,15 @@ c.dbAccess(1, function(err, data) {
 
 Notes:
 
-The first line requires our evaluation harness.
-We call methods on that object to perform operations.
-
-Pretty simple.
 Our callback takes two values, an error value and a data value.
+
 If the error value isn't null, something went wrong and we need to call `#errored` on our harness to mock the handling of that.
+
 If everything went well, we're going to pass our results to the output method on our harness to demonstrate that we got it.
+
 I have just wired that up to log the data to console so we can see it.
 
-Demonstrate
+*Demonstrate*
 
 ~~~
 
@@ -430,6 +440,7 @@ Demonstrate
 
 ```javascript
 var  c = require("../crucibles");
+var id = c.input("1");
 
 c.dbAccess(1, function(err, data) {
   if (err) {
@@ -443,8 +454,11 @@ c.dbAccess(1, function(err, data) {
 Notes:
 
 Okay, this is literally the exact same code.
+
 This is because Async.js is a library that's still based on callbacks.
+
 It stays very close to the standard callback model, so in this simple case it doesn't help us at all.
+
 It will definitely help later, though.
 
 ~~~
@@ -471,29 +485,33 @@ dbAccess: function(id) {
 Notes:
 
 For Promises we have to wrap the whole evaluation harness so it returns Promises.
+
 This is a big consideration when using Promises: you need your interfaces to *support* Promises.
 
-Have a while separate file to redefine the API, not gonna show the whole thing, but this gives you the idea.
+Have a whole separate file to redefine the API, not gonna show the whole thing, but this gives you the idea.
 
 ~~~
 
 ```javascript
-var c = require("./crucibles_promise_api");
+var c_p = require("./crucibles_promise_api");
+var id = c_p.input("1");
 
-c.dbAccess(1).then(
+c_p.dbAccess(1).then(
     function(data) {
-      c.output(data);
+      c_p.output(data);
     },
     function(err) {
-      c.errored();
+      c_p.errored();
     }
   );
 ```
 
 Notes:
 
-This simple crucible makes it pretty apparent that Promises are really just callbacks dressed up in some ceremony.
+This makes it pretty apparent that Promises are just callbacks dressed up in some ceremony.
+
 Only noticeable difference is that we have separate callbacks for success and failure.
+
 Promises don't help at all in this case, but they'll be more useful later.
 
 ~~~
@@ -504,6 +522,7 @@ Promises don't help at all in this case, but they'll be more useful later.
 Notes:
 
 ICS is a variant of CoffeeScript with an extra feature layered on top to help with async stuff.
+
 The specifics of CoffeeScript aren't too relevant here, just try to follow along.
 
 ~~~
@@ -626,15 +645,14 @@ Only it's better.
 
 ```javascript
 var Q = require("q");
-var c = require("./crucibles_promise_api");
 
-var promises = ids.map(c.dbAccess);
+var promises = ids.map(c_p.dbAccess);
 Q.all(promises).then(
     function(data) {
-      c.output(data);
+      c_p.output(data);
     },
     function(err) {
-      c.errored();
+      c_p.errored();
     }
   );
 ```
@@ -900,7 +918,7 @@ Error handling in one place.
 ~~~
 
 ```javascript
-promises = ids.map(c.dbAccess);
+promises = ids.map(c_p.dbAccess);
 ```
 
 Notes:
@@ -912,7 +930,7 @@ Seen this before
 ```javascript
 var collatedPromise = Q.all(promises)
   .then(function(dbResults) {
-    return c.collate(dbResults[0], dbResults[1]);
+    return c_p.collate(dbResults[0], dbResults[1]);
   });
 ```
 
@@ -925,14 +943,14 @@ Promises are *chainable*
 ```javascript
 Q.all([
     collatedPromise,
-    c.network(1)
+    c_p.network(1)
   ])
   .then(
     function(data) {
-      c.output(data);
+      c_p.output(data);
     },
     function(err) {
-      c.errored();
+      c_p.errored();
     }
   );
 ```
