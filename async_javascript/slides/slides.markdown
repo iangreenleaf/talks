@@ -16,6 +16,7 @@ Notes:
 
 Asynchronous APIs allow work to happen in the background while execution of the current thread continues.
 You call a function and instead of that call blocking and only returning once the result is ready, the call returns right away and says "okay, I'll have an answer for you later."
+
 How do we receive that answer once it's ready?
 We provide a callback, which is just a function that is invoked once the operation has completed. That callback function can take arguments that will hold the results of the operation.
 
@@ -131,9 +132,9 @@ if (stats.isFile()) {
 
 Notes:
 
-Now this might not look as bad visually.
-But I contend that this code still sucks.
+Now this might not look as bad visually, but I contend that this code still sucks.
 This is doing waaaaaay too many things in one big imperative block.
+
 Our problem wasn't that asynchronous style made our code bad, it's that our code *was* bad and asynchronous style just made that very obvious.
 
 ~~~
@@ -155,10 +156,11 @@ function readAndProcessFile(filename, callback) {
 }
 ```
 
+Notes:
+
+In fact, if we clean up this code and factor it into a bunch of little functions that do one thing well, which is a good programming practice no matter what style you're writing, you'll see that the Pyramid of Doom goes away.
 
 ~~~
-
-# Lots of tiny pyramids #
 
 ```javascript
 function dbPopAndHandle(table, processingFn, callback) {
@@ -180,8 +182,6 @@ function popAndProcessFile(callback) {
 
 ~~~
 
-# Lots of tiny pyramids #
-
 ```javascript
 popAndProcessFile(function(err) {
   if (!err) {
@@ -193,16 +193,12 @@ popAndProcessFile(function(err) {
 
 Notes:
 
-In fact, if we clean up this code and factor it into a bunch of little functions that do one thing well, which is a good programming practice no matter what style you're writing, you can see that the Pyramid of Doom goes away.
-
-Describe what's happening.
-
 This code has all the same async stuff going on, but it's not nearly so bad.
-Each function is easy to understand, and we've genericized some of the functions so they could be reused elsewhere in our imaginary application.
+Each function was easy to understand, and we've genericized some of the functions so they could be reused elsewhere in our imaginary application.
 
 ~~~
 
-# Don't worry about the Pyramid of Doom #
+# Don't worry about Pyramid of Doom #
 ## Worry about other, more important things ##
 
 Notes:
