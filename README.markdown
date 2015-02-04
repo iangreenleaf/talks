@@ -2,6 +2,17 @@
 
 Slide decks and other supporting material from talks I have presented.
 
+## Wrangling Asynchronous JavaScript ##
+
+When it comes to asynchronous JavaScript, people spend too much time worrying about the wrong things.
+I tell you what you *should* be worried about, and present a series of "crucibles" to help evaluate async solutions in realistic scenarios.
+
+Presented at SDJS, February 2015.
+
+* [Online slides](http://iangreenleaf.github.io/talks/async_javascript/slides)
+* [PDF](http://iangreenleaf.github.io/talks/async_javascript.pdf)
+* [Source code](./async_javascript)
+
 ## The Firewall Also Gazes Into You ##
 
 Firewalls: turns out they're still useful. Lightning talk on what firewalls have to offer
