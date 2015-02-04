@@ -225,6 +225,8 @@ Notes:
 
 This is what you should fear.
 
+Don't describe in detail here.
+
 Describe
 
 And then, on top of it all, we need to handle errors sensibly, whatever that might mean for our application.
@@ -259,7 +261,7 @@ dbAccess ---> output(d1)
 Notes:
 
 This is the simplest crucible.
-You'll be doing this sort of thing thousands of times in your asynchronous code, where you perform and asynchronous action and then when it finishes, you do something with the results.
+You'll be doing this sort of thing thousands of times in your asynchronous code, where you perform an asynchronous action and then when it finishes, you do something with the results.
 This crucible exists to kick the tires and see how each async solution handles the basic unit of asynchronicity.
 
 ~~~
@@ -279,7 +281,7 @@ dbAccess -----/
 Notes:
 
 This is, I think, the next most common situation you'll run into.
-You have more than one asynchronous operations, and you want to run them in parallel, because that's the whole point of having them be asynchronous.
+You have more than one asynchronous operation, and you want to run them in parallel, because that's the whole point of having them be asynchronous.
 
 But here's the problem: you need to wait until they're *all* finished, and then you need to do something with the combined results of all the operations.
 
@@ -555,6 +557,14 @@ var hadError = false;
 var waiting = 0;
 for (i=0; i<ids.length; i+=1) {
   (function(i) {
+    // ...
+  })(i);
+}
+```
+
+~~~
+
+```javascript
     waiting += 1;
     c.dbAccess(ids[i], function(err, data) {
       if (err) {
@@ -570,8 +580,6 @@ for (i=0; i<ids.length; i+=1) {
         }
       }
     });
-  })(i);
-}
 ```
 
 Notes:
@@ -722,18 +730,11 @@ But in fairness to vanilla JavaScript, I just yelled at you earlier about writin
 
 ```javascript
 var getDbResults = function(callback) {
-  var dbResults = [];
-  var dbWaiting = 0;
-  var errors = [];
+  // ...
   for (i=0; i<ids.length; i+=1) {
-    (function(i) {
-      dbWaiting += 1;
+      // ...
       c.dbAccess(ids[i], function(err, data) {
-        if (err) {
-          errors.push(err);
-        }
-        dbResults[i] = data;
-        dbWaiting -= 1;
+        // ...
         if (dbWaiting === 0) {
           if (errors.length > 0) {
             callback(errors);
@@ -742,7 +743,6 @@ var getDbResults = function(callback) {
           }
         }
       });
-    })(i);
   }
 };
 ```
@@ -783,7 +783,6 @@ var networkAndCollation = function(callback) {
       }
     }
   };
-
   // Continued...
 ```
 
