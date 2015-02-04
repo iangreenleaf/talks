@@ -20,7 +20,7 @@ the typical web developer, and how to set one up on your server without hating y
 
 Presented at SDRuby, May 2014.
 
-* [SpeakerDeck](https://speakerdeck.com/iangreenleaf/the-firewall-also-gazes-into-you)
+* [Online slides](https://speakerdeck.com/iangreenleaf/the-firewall-also-gazes-into-you)
 * [PDF](https://iangreenleaf.github.io/talks/firewalls.pdf)
 * [Source code](./firewalls)
 
@@ -30,7 +30,7 @@ Looking at the state of the art in front-end pain management, and where we're go
 
 Presented at Full Stack North County, March 2014.
 
-* [SpeakerDeck](https://speakerdeck.com/iangreenleaf/the-future-of-the-front-end-or-how-i-learned-to-stop-worrying-and-love-javascript)
+* [Online slides](https://speakerdeck.com/iangreenleaf/the-future-of-the-front-end-or-how-i-learned-to-stop-worrying-and-love-javascript)
 * [PDF](https://iangreenleaf.github.io/talks/future_of_the_frontend.pdf)
 * [Source code](./future_of_the_frontend)
 
