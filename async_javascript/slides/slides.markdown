@@ -1047,3 +1047,21 @@ Putting together this talk improved my opinion of Promises based on how well it 
 
 # IcedCoffeeScript #
 ## Thumbs down ##
+
+~~~
+
+# Thanks! #
+
+~~~
+
+## Follow my blog ##
+
+technotes.iangreenleaf.com
+
+## Buy my book ##
+
+bit.ly/coffeescriptappdev
+
+## Hire me ##
+
+ian@iangreenleaf.com
