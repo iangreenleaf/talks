@@ -46,7 +46,8 @@ Notes:
 
 ~~~
 
-# Capybara + Transactions = not so great #
+# Capybara + Transactions #
+# = not so great #
 
 Notes:
 
@@ -73,7 +74,8 @@ class ActiveRecord::Base
     @@shared_connection || retrieve_connection
   end
 end
-ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+ActiveRecord::Base.shared_connection =
+  ActiveRecord::Base.connection
 ```
 
 Notes:
@@ -83,7 +85,8 @@ Notes:
 # Good start, but… #
 
 ```
-Mysql2::Error: This connection is in use by: #<Thread:0x0000000bb400b8>
+Mysql2::Error: This connection is
+  in use by: #<Thread:0x0000000bb400b8>
 ```
 
 Notes:
@@ -155,9 +158,7 @@ Notes:
 
 ~~~
 
-# transactional_capybara #
-
-https://github.com/iangreenleaf/transactional_capybara
+[github.com/iangreenleaf/transactional_capybara](https://github.com/iangreenleaf/transactional_capybara)
 
 Notes:
 
