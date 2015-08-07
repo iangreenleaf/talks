@@ -38,6 +38,10 @@ Notes:
 
 ~~~
 
+![database transaction diagram](database_transactions.svg)
+
+~~~
+
 # Database transactions are fast #
 
 ~~~
@@ -51,6 +55,10 @@ Notes:
 # Threads #
 
 Notes:
+
+~~~
+
+![threaded transaction diagram](capybara_threads.svg)
 
 ~~~
 
@@ -85,6 +93,10 @@ Notes:
 # Why everything is broken #
 
 Notes:
+
+~~~
+
+![threaded transaction diagram](threaded_transactions.svg)
 
 ~~~
 
