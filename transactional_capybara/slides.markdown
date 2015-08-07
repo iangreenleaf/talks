@@ -20,6 +20,8 @@ For anyone unfamiliar with Capybara: it's a tool for integration testing that si
 
 # Transactions for test teardown = great #
 
+~~~
+
 ```ruby
 config.use_transactional_fixtures
 ```
@@ -27,8 +29,6 @@ config.use_transactional_fixtures
 Notes:
 
 ~~~
-
-# Transactions for test teardown = great #
 
 ```javascript
 DatabaseCleaner.strategy = :transaction
