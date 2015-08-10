@@ -2,6 +2,18 @@
 
 Slide decks and other supporting material from talks I have presented.
 
+## Database Transactions 💜 Capybara ##
+
+Capybara is great, and database transactions for test cleanup are great.
+But when you put them together, horrible things can happen.
+Find out why all of your tests are broken, and the easy way to fix it.
+
+Presented at SDRuby, August 2015.
+
+* [Online slides](https://iangreenleaf.github.io/talks/transactional_capybara/)
+* [PDF](https://iangreenleaf.github.io/talks/transactional_capybara.pdf)
+* [Source code](./transactional_capybara)
+
 ## Wrangling Asynchronous JavaScript ##
 
 When it comes to asynchronous JavaScript, people spend too much time worrying about the wrong things.
